@@ -1,0 +1,14 @@
+/* 定义一些常用的样式类 */
+.row-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.row-around {
+    display: flex;
+    justify-content: space-around;
+}
+
+.text-center {
+    text-align: center;
+}

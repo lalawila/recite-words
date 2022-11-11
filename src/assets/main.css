@@ -1,0 +1,20 @@
+body {
+    margin: 0;
+}
+
+:root {
+    box-sizing: border-box; /* 设置根元素的 box-sizing: border-box */
+}
+*,
+*:before,
+*:after {
+    box-sizing: inherit; /* box-sizing 继承自父元素 */
+}
+
+#app {
+    background-color: #111;
+
+    --text-color: white;
+
+    color: var(--text-color);
+}
