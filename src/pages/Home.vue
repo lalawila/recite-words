@@ -1,9 +1,7 @@
 <template>
     <main class="container">
         <div>
-            <Text :size="60" weight="bold" class="days" inline>{{
-                count
-            }}</Text>
+            <Text :size="60" weight="bold" class="days" inline>{{ days }}</Text>
             <span>天</span>
         </div>
         <div class="book">
@@ -44,23 +42,16 @@
 <script setup lang="ts">
 import { Notebook, ArrowRightBold } from "@element-plus/icons-vue"
 
-const count = ref(195)
-
-const user: UserInfo = {
-    name: "xx",
-    isFinish: true,
-}
+const days = ref(0)
 </script>
 <style scoped>
 .container {
-    max-width: 500px;
+    max-width: 600px;
     min-height: 100vh;
 
     margin: 0 auto;
 
     padding: 20px;
-
-    background-color: #000;
 
     display: flex;
     flex-direction: column;

@@ -5,7 +5,7 @@ import Statistics from "@/pages/Statistics.vue"
 
 const routes = [
     {
-        name: "index", // 页面名
+        name: "home", // 页面名
         path: "/", // 映射的路径
         component: Home, // 虽配置名为 component 组件，但我更愿意理解为 page 页面
     },
@@ -17,7 +17,7 @@ const routes = [
 ]
 
 const router = VueRouter.createRouter({
-    // 使用 HTML5 的历史记录模式
+    // 使用 HTML5 模式
     history: VueRouter.createWebHistory(),
     routes,
 })
