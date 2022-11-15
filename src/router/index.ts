@@ -2,6 +2,7 @@ import * as VueRouter from "vue-router"
 
 import Home from "@/pages/Home.vue"
 import Statistics from "@/pages/Statistics.vue"
+import Words from "@/pages/Words.vue"
 
 const routes = [
     {
@@ -13,6 +14,12 @@ const routes = [
         name: "statistics",
         path: "/statistics",
         component: Statistics,
+    },
+
+    {
+        name: "words",
+        path: "/words",
+        component: Words,
     },
 ]
 
