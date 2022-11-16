@@ -7,7 +7,9 @@
         <div class="book">
             <div class="row-between">
                 <Text :size="20" weight="bold">四级词汇</Text>
-                <el-button type="primary" link>查看词表</el-button>
+                <el-button type="primary" link @click="goWords"
+                    >查看词表</el-button
+                >
             </div>
             <div class="setting">
                 <el-icon><Notebook /></el-icon>
@@ -41,8 +43,16 @@
 </template>
 <script setup lang="ts">
 import { Notebook, ArrowRightBold } from "@element-plus/icons-vue"
+import { useRouter } from "vue-router"
 
 const days = ref(0)
+
+const router = useRouter()
+function goWords() {
+    router.push({
+        name: "words",
+    })
+}
 </script>
 <style scoped>
 .container {

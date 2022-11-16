@@ -16,3 +16,8 @@ interface Word {
     example_audio: string
     explains: Explain[]
 }
+
+interface ApiWords {
+    results: Word[]
+    amount: number
+}

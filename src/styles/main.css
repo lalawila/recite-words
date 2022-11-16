@@ -8,12 +8,11 @@
 }
 
 body {
+    background-color: #000;
     margin: 0;
 }
 
 #app {
-    background-color: #000;
-
     --text-color: white;
 
     color: var(--text-color);

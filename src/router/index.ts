@@ -3,6 +3,8 @@ import * as VueRouter from "vue-router"
 import Home from "@/pages/Home.vue"
 import Statistics from "@/pages/Statistics.vue"
 import Words from "@/pages/Words.vue"
+import WordDetail from "@/pages/WordDetail.vue"
+import NotFound from "@/pages/NotFound.vue"
 
 const routes = [
     {
@@ -15,11 +17,20 @@ const routes = [
         path: "/statistics",
         component: Statistics,
     },
-
     {
         name: "words",
         path: "/words",
         component: Words,
+    },
+    {
+        name: "wordDetail",
+        path: "/words/:id",
+        component: WordDetail,
+    },
+    {
+        name: "NotFound",
+        path: "/:pathMatch(.*)*",
+        component: NotFound,
     },
 ]
 

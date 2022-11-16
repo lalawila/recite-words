@@ -1,12 +1,21 @@
 /* 定义一些常用的样式类 */
-.row-between {
+.row-between,
+.row-around,
+.row-start {
     display: flex;
+    align-items: center;
+}
+
+.row-between {
     justify-content: space-between;
 }
 
 .row-around {
-    display: flex;
     justify-content: space-around;
+}
+
+.row-start {
+    justify-content: flex-start;
 }
 
 .text-center {

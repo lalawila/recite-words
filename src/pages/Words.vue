@@ -1,16 +1,93 @@
 <template>
-    <h1>单词列表</h1>
-    <div v-for="word of words">
-        <h2>{{ word.word }}</h2>
+    <div class="container">
+        <h1>单词列表</h1>
+        <router-link
+            :to="{ name: 'wordDetail', params: { id: word.id } }"
+            class="word-item"
+            v-for="word of words"
+        >
+            <div class="row-between">
+                <div>
+                    <span class="word">{{ word.word }}</span>
+                    <span class="phonetic">/{{ word.us_phonetic }}/</span>
+                </div>
+                <button @click.prevent="play(word.us_phonetic_audio)">
+                    play
+                </button>
+            </div>
+            <!-- 仅显示第一个解释 -->
+            <p>{{ word.explains[0].pos }} {{ word.explains[0].trans }}</p>
+        </router-link>
+        <p v-if="isFinished">已经没有更多了~</p>
     </div>
 </template>
 <script setup lang="ts">
 import type { Ref } from "vue"
 import { getWords } from "@/api/word"
-import type { Word } from "@/api/word"
+import { useDistanceFromBottom } from "@/composables/scroll"
 
-let words: Ref<Word[]> = ref([])
-onMounted(async () => {
-    words.value = await getWords()
-})
+const words: Ref<Word[]> = ref([])
+
+const isFinished = ref(false)
+let page = 1
+async function getData() {
+    const data = await getWords(page)
+    if (data.results.length === 0) {
+        // 已经没有更多了
+        isFinished.value = true
+        return
+    }
+
+    words.value = [...words.value, ...data.results]
+    page++
+}
+
+onMounted(getData)
+
+function play(url: string) {
+    const audio = new Audio(url)
+    audio.play()
+}
+
+const distance = useDistanceFromBottom()
+watch(
+    () => distance.value < 300,
+    (value) => {
+        // 每次滚动条距离底部小于 300 时加载下一页
+        if (value) getData()
+    }
+)
 </script>
+
+<style scoped>
+.container {
+    max-width: 600px;
+    padding: 20px;
+
+    margin: 0 auto;
+}
+
+.word-item {
+    display: block;
+
+    /* 去除 a 元素的样式 */
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.word-item:not(:last-child) {
+    padding: 20px 0;
+    border-bottom: 1px solid white;
+}
+
+.word {
+    font-size: 18px;
+    font-weight: bold;
+
+    margin-right: 10px;
+}
+.phonetic {
+    font-size: 14px;
+    color: #999;
+}
+</style>
