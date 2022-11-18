@@ -8,8 +8,12 @@
         >
             <div class="row-between">
                 <div>
-                    <span class="word">{{ word.word }}</span>
-                    <span class="phonetic">/{{ word.us_phonetic }}/</span>
+                    <Text :size="20" class="right-10" bold inline>{{
+                        word.word
+                    }}</Text>
+                    <Text :size="14" color="#999" inline
+                        >/{{ word.us_phonetic }}/</Text
+                    >
                 </div>
                 <button @click.prevent="play(word.us_phonetic_audio)">
                     play
@@ -77,15 +81,9 @@ watch(
 
 .word-item:not(:last-child) {
     padding: 20px 0;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #666;
 }
 
-.word {
-    font-size: 18px;
-    font-weight: bold;
-
-    margin-right: 10px;
-}
 .phonetic {
     font-size: 14px;
     color: #999;

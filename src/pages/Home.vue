@@ -1,12 +1,12 @@
 <template>
     <main class="container">
         <div>
-            <Text :size="60" weight="bold" class="days" inline>{{ days }}</Text>
+            <Text :size="60" bold class="days" inline>{{ days }}</Text>
             <span>天</span>
         </div>
         <div class="book">
             <div class="row-between">
-                <Text :size="20" weight="bold">四级词汇</Text>
+                <Text :size="20" bold>四级词汇</Text>
                 <el-button type="primary" link @click="goWords"
                     >查看词表</el-button
                 >
@@ -25,15 +25,15 @@
             <div class="row-around text-center">
                 <div>
                     <Text :size="12" color="#aaa">新词</Text>
-                    <Text :size="18" weight="bold">10</Text>
+                    <Text :size="18" bold>10</Text>
                 </div>
                 <div>
                     <Text :size="12" color="#aaa">新词</Text>
-                    <Text :size="18" weight="bold">10</Text>
+                    <Text :size="18" bold>10</Text>
                 </div>
                 <div>
                     <Text :size="12" color="#aaa">新词</Text>
-                    <Text :size="18" weight="bold">10</Text>
+                    <Text :size="18" bold>10</Text>
                 </div>
             </div>
         </div>

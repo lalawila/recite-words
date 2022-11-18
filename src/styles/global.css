@@ -21,3 +21,11 @@
 .text-center {
     text-align: center;
 }
+
+.right-5 {
+    margin-right: 5px;
+}
+
+.right-10 {
+    margin-right: 10px;
+}

@@ -13,7 +13,7 @@ export async function getWords(
     return response.data
 }
 
-export async function getWordDetail(wordId: number): Promise<Word[]> {
+export async function getWordDetail(wordId: number): Promise<Word> {
     const response = await http.get(`/words/${wordId}`)
     return response.data
 }
