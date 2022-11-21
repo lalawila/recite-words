@@ -43,7 +43,6 @@
 </template>
 <script setup lang="ts">
 import { Notebook, ArrowRightBold } from "@element-plus/icons-vue"
-import { useRouter } from "vue-router"
 
 const days = ref(0)
 

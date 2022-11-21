@@ -1,36 +1,44 @@
 import * as VueRouter from "vue-router"
 
 import Home from "@/pages/Home.vue"
-import Statistics from "@/pages/Statistics.vue"
-import Words from "@/pages/Words.vue"
-import WordDetail from "@/pages/WordDetail.vue"
-import NotFound from "@/pages/NotFound.vue"
 
 const routes = [
     {
-        name: "home", // 页面名
+        name: "Home", // 页面名
         path: "/", // 映射的路径
         component: Home, // 虽配置名为 component 组件，但我更愿意理解为 page 页面
     },
     {
-        name: "statistics",
+        name: "Statistics",
         path: "/statistics",
-        component: Statistics,
+        component: () => import("@/pages/Statistics.vue"),
     },
     {
-        name: "words",
+        name: "Words",
         path: "/words",
-        component: Words,
+        component: () => import("@/pages/Words.vue"),
     },
     {
-        name: "wordDetail",
+        name: "WordDetail",
         path: "/words/:id",
-        component: WordDetail,
+        component: () => import("@/pages/WordDetail.vue"),
+    },
+    ,
+    {
+        name: "Login",
+        path: "/login",
+        component: () => import("@/pages/Login.vue"),
+    },
+    ,
+    {
+        name: "Signup",
+        path: "/signup",
+        component: () => import("@/pages/Signup.vue"),
     },
     {
         name: "NotFound",
         path: "/:pathMatch(.*)*",
-        component: NotFound,
+        component: () => import("@/pages/NotFound.vue"),
     },
 ]
 

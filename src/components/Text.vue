@@ -58,8 +58,8 @@ const margin = computed(function () {
 const weight = computed(() => {
     console.assert(!(props.bold && props.light), "bold 和 light 不能同时设置")
 
-    if (props.bold) return 700
-    if (props.light) return 100
+    if (props.bold) return 700 // 粗
+    if (props.light) return 100 // 细
 
     return "unset"
 })

@@ -1,3 +1,6 @@
 <template>
-    <router-view></router-view>
+    <Navigation> </Navigation>
+    <Suspense>
+        <RouterView> </RouterView>
+    </Suspense>
 </template>

@@ -2,7 +2,7 @@
     <div class="container">
         <h1>单词列表</h1>
         <router-link
-            :to="{ name: 'wordDetail', params: { id: word.id } }"
+            :to="{ name: 'WordDetail', params: { id: word.id } }"
             class="word-item"
             v-for="word of words"
         >
