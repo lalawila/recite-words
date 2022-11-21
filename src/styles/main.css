@@ -1,3 +1,6 @@
+@import "theme.css";
+@import "global.css";
+
 :root {
     box-sizing: border-box; /* 设置根元素的 box-sizing: border-box */
 }
@@ -13,7 +16,5 @@ body {
 }
 
 #app {
-    --text-color: white;
-
     color: var(--text-color);
 }

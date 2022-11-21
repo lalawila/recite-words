@@ -24,6 +24,7 @@ const props = defineProps({
     },
     color: String,
     size: [Number, String],
+    // 设置 margin
     left: [Number, String],
     top: [Number, String],
     right: [Number, String],

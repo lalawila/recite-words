@@ -3,12 +3,10 @@ import App from "./App.vue"
 
 import router from "./router"
 
-// 主要样式
 import "./styles/main.css"
-// 主题色
-import "./styles/theme.css"
-// 全局样式
-import "./styles/global.css"
+
+// element 夜间模式
+import "element-plus/theme-chalk/dark/css-vars.css"
 
 const app = createApp(App)
 

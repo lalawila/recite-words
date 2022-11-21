@@ -12,7 +12,16 @@ export default defineConfig({
     plugins: [
         vue(),
         AutoImport({
-            imports: ["vue", "vue-router"],
+            imports: [
+                "vue",
+                "vue-router",
+                {
+                    axios: [
+                        // default imports
+                        ["default", "axios"], // import { default as axios } from 'axios',
+                    ],
+                },
+            ],
             // 自动引入 Element
             resolvers: [ElementPlusResolver()],
         }),
