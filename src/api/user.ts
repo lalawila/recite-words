@@ -1,6 +1,9 @@
 import http from "./http"
 
-export async function signup(username: string, password: string) {
+export async function signup(
+    username: string,
+    password: string
+): Promise<ApiSignup> {
     const response = await http.post("/users", {
         username,
         password,
