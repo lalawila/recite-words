@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <h1>单词列表</h1>
-        <router-link
+        <RouterLink
             :to="{ name: 'WordDetail', params: { id: word.id } }"
             class="word-item"
             v-for="word of words"
@@ -21,7 +21,7 @@
             </div>
             <!-- 仅显示第一个解释 -->
             <p>{{ word.explains[0].pos }} {{ word.explains[0].trans }}</p>
-        </router-link>
+        </RouterLink>
         <p v-if="isFinished">已经没有更多了~</p>
     </div>
 </template>
@@ -34,8 +34,8 @@ const words: Ref<Word[]> = ref([])
 
 const isFinished = ref(false)
 let page = 1
-async function getData() {
-    const data = await getWords(page)
+async function fetchData() {
+    const data = await getWords(page, 2)
     if (data.results.length === 0) {
         // 已经没有更多了
         isFinished.value = true
@@ -46,7 +46,7 @@ async function getData() {
     page++
 }
 
-onMounted(getData)
+fetchData()
 
 function play(url: string) {
     const audio = new Audio(url)
@@ -58,7 +58,7 @@ watch(
     () => distance.value < 300,
     (value) => {
         // 每次滚动条距离底部小于 300 时加载下一页
-        if (value) getData()
+        if (value) fetchData()
     }
 )
 </script>

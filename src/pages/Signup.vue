@@ -40,9 +40,9 @@ const passwordAgain = ref("")
 const warningMsg = computed(() => {
     if (
         username.value.length > 0 &&
-        (username.value.length < 6 || username.value.length > 12)
+        (username.value.length < 3 || username.value.length > 12)
     ) {
-        return "用户名必须为 6 至 12 位"
+        return "用户名必须为 3 至 12 位"
     }
 
     if (
