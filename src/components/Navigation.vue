@@ -36,7 +36,7 @@ import { UserFilled } from "@element-plus/icons-vue"
 const tokenStore = useTokenStore()
 const userStore = useUserStore()
 
-// const route = useRoute()
+const route = useRoute()
 </script>
 <style>
 .navigation {

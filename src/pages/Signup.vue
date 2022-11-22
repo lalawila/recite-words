@@ -27,6 +27,11 @@
 <script setup lang="ts">
 import { signup } from "@/api/user"
 import { handleApiError } from "@/api/http"
+import { useTokenStore } from "@/stores/token"
+
+const tokenStore = useTokenStore()
+const router = useRouter()
+const route = useRoute()
 
 const username = ref("")
 const password = ref("")
@@ -58,13 +63,22 @@ const warningMsg = computed(() => {
 async function onsignup() {
     try {
         const data = await signup(username.value, password.value)
-        console.log("注册成功")
-        console.log(data)
+
+        // 设置 token
+        tokenStore.token = data.token
+
+        ElMessage({
+            message: "登录成功",
+            type: "success",
+        })
+
+        // 登录成功跳转回先前的页面
+        router.push({
+            path: (route.query.redirect as string) || "/",
+        })
     } catch (error: any) {
         handleApiError(error, (response) => {
-            if (response.data.code === 2002) {
-                alert("用户名必须为 6 至 12 位")
-            } else if (response.data.code === 2001) {
+            if (response.data.code === 2001) {
                 ElMessage({
                     message: "用户名已经被注册，请更换。",
                     type: "error",

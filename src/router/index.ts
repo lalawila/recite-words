@@ -45,7 +45,7 @@ const routes = [
 const router = VueRouter.createRouter({
     // 使用 HTML5 模式
     history: VueRouter.createWebHistory(),
-    routes,
+    routes: routes as VueRouter.RouteRecordRaw[],
 })
 
 export default router
