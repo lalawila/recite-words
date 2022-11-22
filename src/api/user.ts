@@ -1,4 +1,5 @@
 import http from "./http"
+import { useTokenStore } from "@/stores/token"
 
 export async function signup(
     username: string,
@@ -18,6 +19,17 @@ export async function login(
     const response = await http.post(`/tokens`, {
         username,
         password,
+    })
+    return response.data
+}
+
+export async function fetchSelfInfo(): Promise<ApiSelfInfo> {
+    const tokenStore = useTokenStore()
+
+    const response = await http.get("/user/info", {
+        headers: {
+            Authorization: tokenStore.token,
+        },
     })
     return response.data
 }

@@ -16,6 +16,7 @@ export default defineConfig({
                 "vue",
                 "vue-router",
                 {
+                    pinia: ["defineStore"],
                     axios: [
                         // default imports
                         ["default", "axios"], // import { default as axios } from 'axios',

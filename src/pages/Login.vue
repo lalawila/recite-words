@@ -18,18 +18,39 @@
 <script setup lang="ts">
 import { login } from "@/api/user"
 import { handleApiError } from "@/api/http"
+import { useTokenStore } from "@/stores/token"
+
+const tokenStore = useTokenStore()
 
 const username = ref("")
 const password = ref("")
 
+const router = useRouter()
+const route = useRoute()
+
 async function onlogin() {
     try {
         const data = await login(username.value, password.value)
-        console.log("登录成功")
-        console.log(data)
+        // 设置 token
+        tokenStore.token = data.token
+
+        ElMessage({
+            message: "登录成功",
+            type: "success",
+        })
+
+        // 登录成功跳转回先前的页面
+        router.push({
+            path: (route.query.redirect as string) || "/",
+        })
     } catch (error: any) {
         handleApiError(error, (response) => {
-            console.log(response)
+            if (response.data.code === 2000) {
+                ElMessage({
+                    message: "用户名或密码错误",
+                    type: "error",
+                })
+            }
         })
     }
 }

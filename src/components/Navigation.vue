@@ -8,14 +8,35 @@
             >
         </div>
         <div>
-            <!-- <ElAvatar :icon="UserFilled"> </ElAvatar> -->
-            <RouterLink class="btn" :to="{ name: 'Login' }">登录</RouterLink>
-            <RouterLink class="btn" :to="{ name: 'Signup' }">注册</RouterLink>
+            <template v-if="tokenStore.isLogined">
+                <ElAvatar class="right-10" :icon="UserFilled"> </ElAvatar>
+                <Text inline bold>{{ userStore.username }}</Text>
+            </template>
+            <template v-else>
+                <RouterLink
+                    class="btn"
+                    :to="{ name: 'Login', query: { redirect: route.path } }"
+                    >登录</RouterLink
+                >
+                <RouterLink
+                    class="btn"
+                    :to="{ name: 'Signup', query: { redirect: route.path } }"
+                    >注册</RouterLink
+                >
+            </template>
         </div>
     </div>
 </template>
 <script setup lang="ts">
+import { useTokenStore } from "@/stores/token"
+import { useUserStore } from "@/stores/user"
+
 import { UserFilled } from "@element-plus/icons-vue"
+
+const tokenStore = useTokenStore()
+const userStore = useUserStore()
+
+// const route = useRoute()
 </script>
 <style>
 .navigation {
