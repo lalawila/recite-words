@@ -1,27 +1,43 @@
 :root {
+    /* 日间 */
+    color-scheme: light;
+
     /* 覆盖 element 的主题色 */
     --el-color-primary: hsl(161, 43%, 55%);
     --el-color-primary-light-3: hsl(161, 43%, 65%);
     --el-color-primary-light-5: hsl(161, 43%, 75%);
 
-    /* 自定义的主题色 */
-    --text-color: #333;
-    --background-color: #eee;
+    --el-color-primary-dark-2: hsl(161, 43%, 50%);
 
-    --text-secondary-color: #333;
-    --background-secondary-color: #ccc;
+    /* 自定义的主题色 */
+    --text-color: #111;
+    --background-color: #fff;
+
+    --text-second-color: #333;
+    --background-second-color: #ddd;
+
+    --text-third-color: #555;
+    --background-third-color: #bbb;
 }
 
 :root.dark {
+    /* 夜间 */
+    color-scheme: dark;
+
     /* 覆盖 element 的主题色 */
     --el-color-primary: hsl(161, 43%, 55%);
     --el-color-primary-light-3: hsl(161, 43%, 65%);
     --el-color-primary-light-5: hsl(161, 43%, 75%);
 
-    /* 自定义的主题色 */
-    --text-color: white;
-    --background-color: black;
+    --el-color-primary-dark-2: hsl(161, 43%, 50%);
 
-    --text-secondary-color: #ccc;
-    --background-secondary-color: #333;
+    /* 自定义的主题色 */
+    --text-color: #fff;
+    --background-color: #111;
+
+    --text-second-color: #ddd;
+    --background-second-color: #333;
+
+    --text-third-color: #bbb;
+    --background-third-color: #555;
 }

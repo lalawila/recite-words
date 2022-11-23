@@ -1,21 +1,41 @@
 <template>
-    <div class="navigation row-between">
+    <header class="navigation row-between">
         <div>
             <RouterLink class="btn" :to="{ name: 'Home' }">背单词</RouterLink>
             <RouterLink class="btn" :to="{ name: 'Words' }">词表</RouterLink>
             <RouterLink class="btn" :to="{ name: 'Statistics' }"
                 >数据统计</RouterLink
             >
-            <el-switch
-                v-model="isDark"
+            <ElSwitch
+                class="theme-switch"
+                v-model="themeStore.theme"
+                :active-value="Theme.dark"
+                :inactive-valu="Theme.light"
                 :active-icon="Moon"
                 :inactive-icon="Sunny"
             />
         </div>
         <div>
             <template v-if="tokenStore.isLogined">
-                <ElAvatar class="right-10" :icon="UserFilled"> </ElAvatar>
-                <Text inline bold>{{ userStore.username }}</Text>
+                <ElDropdown @command="handleCommand" size="large">
+                    <ElAvatar :src="userStore.avatarUrl" />
+                    <template #dropdown>
+                        <ElDropdownMenu>
+                            <Text :vertical="5" bold center>{{
+                                userStore.username
+                            }}</Text>
+                            <ElDropdownItem command="info"
+                                >个人设置</ElDropdownItem
+                            >
+                            <ElDropdownItem command="info"
+                                >学习设置</ElDropdownItem
+                            >
+                            <ElDropdownItem command="logout" divided
+                                >退出登录</ElDropdownItem
+                            >
+                        </ElDropdownMenu>
+                    </template>
+                </ElDropdown>
             </template>
             <template v-else>
                 <RouterLink
@@ -30,14 +50,13 @@
                 >
             </template>
         </div>
-    </div>
+    </header>
 </template>
 <script setup lang="ts">
 import { useTokenStore } from "@/stores/token"
 import { useUserStore } from "@/stores/user"
 import { useThemeStore, Theme } from "@/stores/theme"
 
-import { UserFilled } from "@element-plus/icons-vue"
 import { Sunny, Moon } from "@element-plus/icons-vue"
 
 const tokenStore = useTokenStore()
@@ -45,9 +64,15 @@ const userStore = useUserStore()
 const themeStore = useThemeStore()
 
 const route = useRoute()
+const router = useRouter()
 
-const isDark = ref(themeStore.theme === Theme.dark)
-watch(isDark, (value) => (themeStore.theme = value ? Theme.dark : Theme.light))
+function handleCommand(command: string) {
+    if (command === "info") {
+        router.push({ name: "SettingInfo" })
+    } else if (command === "logout") {
+        tokenStore.logout()
+    }
+}
 </script>
 <style>
 .navigation {
@@ -63,12 +88,15 @@ a {
 .btn {
     font-weight: bold;
 
-    color: var(--text-secondary-color);
+    color: var(--text-third-color);
     padding: 10px 20px;
 }
 .btn:hover {
     color: var(--text-color);
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-second-color);
     border-radius: 8px;
+}
+.theme-switch {
+    --el-switch-on-color: var(--background-second-color);
 }
 </style>

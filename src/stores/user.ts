@@ -19,6 +19,8 @@ export const useUserStore = defineStore(
                 register_time: registerTime.value,
                 avatar_url: avatarUrl.value,
             } = await fetchSelfInfo())
+
+            avatarUrl.value = avatarUrl.value || "/default.jpg" // 默认头像
         }
 
         return {

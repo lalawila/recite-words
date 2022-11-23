@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <Container :width="400" class="container">
         <h1 class="text-center">用户注册</h1>
         <ElInput v-model="username" placeholder="请输入用户名" size="large">
             <template #prepend>用户名</template>
@@ -20,14 +20,21 @@
         >
             <template #prepend>重&emsp;复</template>
         </ElInput>
-        <ElAlert v-show="warningMsg" :title="warningMsg" type="warning" />
+        <ElAlert
+            v-show="warningMsg"
+            :title="warningMsg"
+            type="warning"
+            :closable="false"
+        />
         <ElButton type="primary" @click="onsignup">注册</ElButton>
-    </div>
+    </Container>
 </template>
 <script setup lang="ts">
 import { signup } from "@/api/user"
 import { handleApiError } from "@/api/http"
 import { useTokenStore } from "@/stores/token"
+
+import { ElMessage } from "element-plus"
 
 const tokenStore = useTokenStore()
 const router = useRouter()
@@ -90,11 +97,6 @@ async function onsignup() {
 </script>
 <style scoped>
 .container {
-    max-width: 400px;
-    padding: 20px;
-
-    margin: 0 auto;
-
     display: flex;
     flex-direction: column;
 

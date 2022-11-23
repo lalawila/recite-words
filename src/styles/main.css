@@ -11,12 +11,10 @@
 }
 
 body {
-    background-color: var(--background-color);
     margin: 0;
 
-    transition: background-color 0.5s;
-}
-
-#app {
     color: var(--text-color);
+    background-color: var(--background-color);
+
+    transition: background-color 1s;
 }

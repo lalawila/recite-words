@@ -1,5 +1,5 @@
 <template>
-    <main class="container">
+    <Container :width="600" class="container">
         <div>
             <Text :size="60" bold class="days" inline>{{ days }}</Text>
             <span>天</span>
@@ -8,13 +8,15 @@
             <div class="row-between">
                 <Text :size="20" bold>四级词汇</Text>
                 <RouterLink :to="{ name: 'Words' }">
-                    <Text :size="14" color="#67c3a5">查看词表</Text>
+                    <Text :size="14" color="var(--el-color-primary)" bold
+                        >查看词表</Text
+                    >
                 </RouterLink>
             </div>
             <div class="setting">
-                <el-icon><Notebook /></el-icon>
-                <span> 学习设置</span>
-                <el-icon><ArrowRightBold /></el-icon>
+                <ElIcon><Notebook /></ElIcon>
+                <span>学习设置</span>
+                <ElIcon><ArrowRightBold /></ElIcon>
             </div>
             <div class="progress row-between">
                 <span>已完成 78.2%</span>
@@ -24,19 +26,19 @@
 
             <div class="row-around text-center">
                 <div>
-                    <Text :size="12" color="var(--text-secondary-color)"
+                    <Text :size="12" color="var(--text-second-color)"
                         >新词</Text
                     >
                     <Text :size="18" bold>10</Text>
                 </div>
                 <div>
-                    <Text :size="12" color="var(--text-secondary-color)"
+                    <Text :size="12" color="var(--text-second-color)"
                         >新词</Text
                     >
                     <Text :size="18" bold>10</Text>
                 </div>
                 <div>
-                    <Text :size="12" color="var(--text-secondary-color)"
+                    <Text :size="12" color="var(--text-second-color)"
                         >新词</Text
                     >
                     <Text :size="18" bold>10</Text>
@@ -44,7 +46,7 @@
             </div>
         </div>
         <ElButton type="primary" size="large" round>开始学习</ElButton>
-    </main>
+    </Container>
 </template>
 <script setup lang="ts">
 import { Notebook, ArrowRightBold } from "@element-plus/icons-vue"
@@ -53,13 +55,6 @@ const days = ref(0)
 </script>
 <style scoped>
 .container {
-    max-width: 600px;
-    min-height: 100vh;
-
-    margin: 0 auto;
-
-    padding: 20px;
-
     display: flex;
     flex-direction: column;
 
@@ -73,7 +68,7 @@ const days = ref(0)
 .book {
     padding: 20px;
 
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-second-color);
 
     border-radius: 16px;
 
@@ -91,7 +86,7 @@ const days = ref(0)
 }
 
 .progress {
-    color: var(--text-secondary-color);
+    color: var(--text-third-color);
 
     font-size: 14px;
     font-weight: bold;

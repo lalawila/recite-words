@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <Container :width="400" class="container">
         <h1 class="text-center">用户登录</h1>
         <ElInput v-model="username" placeholder="请输入用户名" size="large">
             <template #prepend>用户名</template>
@@ -13,12 +13,13 @@
             <template #prepend>密&emsp;码</template>
         </ElInput>
         <ElButton type="primary" @click="onlogin">登录</ElButton>
-    </div>
+    </Container>
 </template>
 <script setup lang="ts">
 import { login } from "@/api/user"
 import { handleApiError } from "@/api/http"
 import { useTokenStore } from "@/stores/token"
+import { ElMessage } from "element-plus"
 
 const tokenStore = useTokenStore()
 
@@ -57,11 +58,6 @@ async function onlogin() {
 </script>
 <style scoped>
 .container {
-    max-width: 400px;
-    padding: 20px;
-
-    margin: 0 auto;
-
     display: flex;
     flex-direction: column;
 
