@@ -6,6 +6,11 @@
             <RouterLink class="btn" :to="{ name: 'Statistics' }"
                 >数据统计</RouterLink
             >
+            <el-switch
+                v-model="isDark"
+                :active-icon="Moon"
+                :inactive-icon="Sunny"
+            />
         </div>
         <div>
             <template v-if="tokenStore.isLogined">
@@ -30,13 +35,19 @@
 <script setup lang="ts">
 import { useTokenStore } from "@/stores/token"
 import { useUserStore } from "@/stores/user"
+import { useThemeStore, Theme } from "@/stores/theme"
 
 import { UserFilled } from "@element-plus/icons-vue"
+import { Sunny, Moon } from "@element-plus/icons-vue"
 
 const tokenStore = useTokenStore()
 const userStore = useUserStore()
+const themeStore = useThemeStore()
 
 const route = useRoute()
+
+const isDark = ref(themeStore.theme === Theme.dark)
+watch(isDark, (value) => (themeStore.theme = value ? Theme.dark : Theme.light))
 </script>
 <style>
 .navigation {
@@ -52,12 +63,12 @@ a {
 .btn {
     font-weight: bold;
 
-    color: #ccc;
+    color: var(--text-secondary-color);
     padding: 10px 20px;
 }
 .btn:hover {
-    color: white;
-    background-color: #262626;
+    color: var(--text-color);
+    background-color: var(--background-secondary-color);
     border-radius: 8px;
 }
 </style>

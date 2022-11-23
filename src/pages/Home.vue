@@ -24,15 +24,21 @@
 
             <div class="row-around text-center">
                 <div>
-                    <Text :size="12" color="#aaa">新词</Text>
+                    <Text :size="12" color="var(--text-secondary-color)"
+                        >新词</Text
+                    >
                     <Text :size="18" bold>10</Text>
                 </div>
                 <div>
-                    <Text :size="12" color="#aaa">新词</Text>
+                    <Text :size="12" color="var(--text-secondary-color)"
+                        >新词</Text
+                    >
                     <Text :size="18" bold>10</Text>
                 </div>
                 <div>
-                    <Text :size="12" color="#aaa">新词</Text>
+                    <Text :size="12" color="var(--text-secondary-color)"
+                        >新词</Text
+                    >
                     <Text :size="18" bold>10</Text>
                 </div>
             </div>
@@ -67,7 +73,7 @@ const days = ref(0)
 .book {
     padding: 20px;
 
-    background-color: #333;
+    background-color: var(--background-secondary-color);
 
     border-radius: 16px;
 
@@ -85,7 +91,7 @@ const days = ref(0)
 }
 
 .progress {
-    color: #888;
+    color: var(--text-secondary-color);
 
     font-size: 14px;
     font-weight: bold;

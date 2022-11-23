@@ -8,7 +8,11 @@
     --el-color-primary-dark-2: hsl(161, 43%, 45%);
 
     /* 自定义的主题色 */
-    --text-color: white;
+    --text-color: #333;
+    --background-color: #eee;
+
+    --text-secondary-color: #333;
+    --background-secondary-color: #ccc;
 }
 
 :root.dark {
@@ -22,4 +26,8 @@
 
     /* 自定义的主题色 */
     --text-color: white;
+    --background-color: black;
+
+    --text-secondary-color: #ccc;
+    --background-secondary-color: #333;
 }

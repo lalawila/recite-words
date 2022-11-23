@@ -3,8 +3,6 @@
     <div v-else class="text"><slot></slot></div>
 </template>
 <script setup lang="ts">
-import { bottom } from "@popperjs/core"
-
 const props = defineProps({
     inline: {
         type: Boolean,

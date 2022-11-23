@@ -29,11 +29,15 @@ const routes = [
         path: "/login",
         component: () => import("@/pages/Login.vue"),
     },
-    ,
     {
         name: "Signup",
         path: "/signup",
         component: () => import("@/pages/Signup.vue"),
+    },
+    {
+        name: "SettingInfo",
+        path: "/setting/info",
+        component: () => import("@/pages/Setting/Info.vue"),
     },
     {
         name: "NotFound",

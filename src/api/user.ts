@@ -33,3 +33,26 @@ export async function fetchSelfInfo(): Promise<ApiSelfInfo> {
     })
     return response.data
 }
+
+export async function updateSelfInfo({
+    username,
+    password,
+    bio,
+}: {
+    username: string
+    password: string
+    bio: string
+}) {
+    const tokenStore = useTokenStore()
+
+    const data = new FormData()
+    if (username) data.set("username", username)
+    if (password) data.set("password", password)
+    if (bio) data.set("bio", bio)
+
+    await http.put("/user/info", data, {
+        headers: {
+            Authorization: tokenStore.token,
+        },
+    })
+}
