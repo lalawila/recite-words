@@ -19,7 +19,6 @@
 import { login } from "@/api/user"
 import { handleApiError } from "@/api/http"
 import { useTokenStore } from "@/stores/token"
-import { ElMessage } from "element-plus"
 
 const tokenStore = useTokenStore()
 

@@ -1,11 +1,8 @@
 :root {
     /* 覆盖 element 的主题色 */
     --el-color-primary: hsl(161, 43%, 55%);
-    --el-color-primary-light-3: hsl(161, 43%, 70%);
-    --el-color-primary-light-4: hsl(161, 43%, 75%);
-    --el-color-primary-light-5: hsl(161, 43%, 80%);
-
-    --el-color-primary-dark-2: hsl(161, 43%, 45%);
+    --el-color-primary-light-3: hsl(161, 43%, 65%);
+    --el-color-primary-light-5: hsl(161, 43%, 75%);
 
     /* 自定义的主题色 */
     --text-color: #333;
@@ -18,11 +15,8 @@
 :root.dark {
     /* 覆盖 element 的主题色 */
     --el-color-primary: hsl(161, 43%, 55%);
-    --el-color-primary-light-3: hsl(161, 43%, 70%);
-    --el-color-primary-light-4: hsl(161, 43%, 75%);
-    --el-color-primary-light-5: hsl(161, 43%, 80%);
-
-    --el-color-primary-dark-2: hsl(161, 43%, 45%);
+    --el-color-primary-light-3: hsl(161, 43%, 65%);
+    --el-color-primary-light-5: hsl(161, 43%, 75%);
 
     /* 自定义的主题色 */
     --text-color: white;

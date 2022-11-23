@@ -2,9 +2,9 @@
     "extends": "@vue/tsconfig/tsconfig.web.json",
     // 包含的类型文件
     "include": [
-        "env.d.ts",
-        "auto-imports.d.ts",
         "components.d.ts",
+        "auto-imports.d.ts",
+        "env.d.ts",
         "src/**/*",
         "src/**/*.vue"
     ],
