@@ -1,4 +1,4 @@
-import * as VueRouter from "vue-router"
+import { createRouter, createWebHistory } from "vue-router"
 
 import Home from "@/pages/Home.vue"
 
@@ -23,7 +23,6 @@ const routes = [
         path: "/words/:id",
         component: () => import("@/pages/WordDetail.vue"),
     },
-    ,
     {
         name: "Login",
         path: "/login",
@@ -46,10 +45,10 @@ const routes = [
     },
 ]
 
-const router = VueRouter.createRouter({
+const router = createRouter({
     // 使用 HTML5 模式
-    history: VueRouter.createWebHistory(),
-    routes: routes as VueRouter.RouteRecordRaw[],
+    history: createWebHistory(),
+    routes,
 })
 
 export default router
