@@ -29,7 +29,19 @@ const password = ref("")
 const router = useRouter()
 const route = useRoute()
 
+const isCheckFail = computed(() => {
+    return username.value.length === 0 || password.value.length === 0
+})
+
 async function onlogin() {
+    if (isCheckFail.value) {
+        ElMessage({
+            message: "请填写用户名和密码。",
+            type: "warning",
+        })
+        return
+    }
+
     try {
         const data = await login(username.value, password.value)
         // 设置 token

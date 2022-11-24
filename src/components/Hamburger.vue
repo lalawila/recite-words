@@ -43,8 +43,6 @@ const isShow = ref(false)
     margin: 0;
 
     z-index: 2000;
-
-    box-shadow: 0 0 20px var(--text-third-color);
 }
 .overlay {
     position: fixed;
@@ -53,7 +51,7 @@ const isShow = ref(false)
     top: 0;
     bottom: 0;
 
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
 
     z-index: 1000;
 }

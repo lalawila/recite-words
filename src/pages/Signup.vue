@@ -67,7 +67,19 @@ const warningMsg = computed(() => {
     }
 })
 
+const isCheckFail = computed(() => {
+    return username.value.length === 0 || password.value.length === 0
+})
+
 async function onsignup() {
+    if (isCheckFail.value) {
+        ElMessage({
+            message: "请填写用户名和密码。",
+            type: "warning",
+        })
+        return
+    }
+
     try {
         const data = await signup(username.value, password.value)
 

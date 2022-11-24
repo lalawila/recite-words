@@ -1,14 +1,14 @@
-:root {
-    --phone-width: 768px;
-}
+/* 768px 及以下统一识别为手持设备 */
 
-@media (min-width: 768px) {
+/* 大于等于 768px 像素隐藏 */
+@media screen and (min-width: 768px) {
     .only-phone {
         display: none;
     }
 }
 
-@media not (min-width: 768px) {
+/* 小于 768px 像素隐藏 */
+@media not screen and (min-width: 768px) {
     .only-pc {
         display: none;
     }
