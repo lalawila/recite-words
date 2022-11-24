@@ -1,6 +1,6 @@
 <template>
     <header class="navigation row-between">
-        <div>
+        <div class="only-pc">
             <RouterLink class="btn" :to="{ name: 'Home' }">背单词</RouterLink>
             <RouterLink class="btn" :to="{ name: 'Words' }">词表</RouterLink>
             <RouterLink class="btn" :to="{ name: 'Statistics' }"
@@ -15,6 +15,21 @@
                 :inactive-icon="Sunny"
             />
         </div>
+        <Hamburger class="only-phone">
+            <RouterLink class="btn" :to="{ name: 'Home' }">背单词</RouterLink>
+            <RouterLink class="btn" :to="{ name: 'Words' }">词表</RouterLink>
+            <RouterLink class="btn" :to="{ name: 'Statistics' }"
+                >数据统计</RouterLink
+            >
+            <ElSwitch
+                class="theme-switch"
+                v-model="themeStore.theme"
+                :active-value="Theme.dark"
+                :inactive-valu="Theme.light"
+                :active-icon="Moon"
+                :inactive-icon="Sunny"
+            />
+        </Hamburger>
         <div>
             <template v-if="tokenStore.isLogined">
                 <ElDropdown @command="handleCommand" size="large">
@@ -97,6 +112,8 @@ a {
     border-radius: 8px;
 }
 .theme-switch {
+    padding: 10px 20px;
+
     --el-switch-on-color: var(--background-second-color);
 }
 </style>

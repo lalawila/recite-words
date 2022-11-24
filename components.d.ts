@@ -19,6 +19,7 @@ declare module '@vue/runtime-core' {
     ElInput: typeof import('element-plus/es')['ElInput']
     ElProgress: typeof import('element-plus/es')['ElProgress']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
+    Hamburger: typeof import('./src/components/Hamburger.vue')['default']
     IEpAim: typeof import('~icons/ep/aim')['default']
     Navigation: typeof import('./src/components/Navigation.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

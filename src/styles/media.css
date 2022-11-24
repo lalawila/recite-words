@@ -1,0 +1,15 @@
+:root {
+    --phone-width: 768px;
+}
+
+@media (min-width: 768px) {
+    .only-phone {
+        display: none;
+    }
+}
+
+@media not (min-width: 768px) {
+    .only-pc {
+        display: none;
+    }
+}
