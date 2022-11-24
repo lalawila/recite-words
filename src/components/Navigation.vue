@@ -89,7 +89,7 @@ function handleCommand(command: string) {
     }
 }
 </script>
-<style>
+<style scoped>
 .navigation {
     max-width: 800px;
     margin: 0 auto;
