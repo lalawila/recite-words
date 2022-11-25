@@ -23,3 +23,7 @@ interface ParamUpdateSelfInfo {
     bio?: string
     avatar?: File
 }
+
+interface ApiUpdateSelfInfo {
+    token: string
+}

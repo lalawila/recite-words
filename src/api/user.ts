@@ -40,7 +40,7 @@ export async function updateSelfInfo({
     newpassword,
     bio,
     avatar,
-}: ParamUpdateSelfInfo) {
+}: ParamUpdateSelfInfo): Promise<ApiUpdateSelfInfo | null> {
     const tokenStore = useTokenStore()
 
     const data = new FormData()
@@ -52,9 +52,11 @@ export async function updateSelfInfo({
     if (bio) data.append("bio", bio)
     if (avatar) data.append("avatar", avatar as Blob)
 
-    await http.put("/user/info", data, {
+    const response = await http.put("/user/info", data, {
         headers: {
             Authorization: tokenStore.token,
         },
     })
+
+    return response.data
 }

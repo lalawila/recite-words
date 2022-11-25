@@ -6,6 +6,12 @@
                 <Camera />
             </ElIcon>
         </div>
+        <Text
+            v-if="userStore.registerTime"
+            :size="14"
+            color="var(--text-third-color)"
+            >注册于：{{ common?.formatTime(userStore.registerTime) }}</Text
+        >
         <ElInput v-model="username" placeholder="请输入用户名~"></ElInput>
         <ElInput
             v-model="bio"
@@ -23,13 +29,15 @@
     <ElDialog
         v-model="confirmPasswordVisible"
         title="修改用户名需要确认密码"
-        width="300px"
+        width="380px"
         center
     >
-        <ElInput v-model="password" placeholder="请确认密码~"></ElInput>
+        <ElInput v-model="password" placeholder="请确认密码~"
+            ><template #prepend>确认密码</template></ElInput
+        >
         <template #footer>
             <span class="dialog-footer">
-                <el-button type="primary" @click="updateInfo" size="large"
+                <el-button type="primary" @click="updateInfo"
                     >确认密码</el-button
                 >
             </span>
@@ -63,9 +71,13 @@
 </template>
 <script setup lang="ts">
 import { Camera } from "@element-plus/icons-vue"
+import { useTokenStore } from "@/stores/token"
 import { useUserStore } from "@/stores/user"
 import { updateSelfInfo } from "@/api/user"
 
+const common = inject<Common>("common")
+
+const tokenStore = useTokenStore()
 const userStore = useUserStore()
 
 const username = ref(userStore.username)
@@ -104,6 +116,7 @@ async function updateInfo() {
         // 如果修改用户名需要确认密码
         if (password.value === "") {
             confirmPasswordVisible.value = true
+            return
         } else {
             data.username = username.value
             data.password = password.value
@@ -118,13 +131,46 @@ async function updateInfo() {
         data.avatar = avatar
     }
 
-    await updateSelfInfo(data)
+    const responseData = await updateSelfInfo(data)
+
+    if (data.username) {
+        // 更新了用户名需要更新 token
+        ;({ token: tokenStore.token } = responseData as ApiUpdateSelfInfo)
+    }
+
+    ElMessage({
+        message: "信息更新成功",
+        type: "success",
+    })
+
     userStore.updateSelfInfo()
+
+    password.value = ""
+    confirmPasswordVisible.value = false
 }
 
 const updatePasswordVisible = ref(false)
 const newpassword = ref("")
-function updatePassword() {}
+async function updatePassword() {
+    const data = {
+        password: password.value,
+        newpassword: newpassword.value,
+    }
+
+    // 更新了密码需要更新 token
+    ;({ token: tokenStore.token } = (await updateSelfInfo(
+        data
+    )) as ApiUpdateSelfInfo)
+
+    ElMessage({
+        message: "密码更新成功",
+        type: "success",
+    })
+
+    password.value = ""
+    newpassword.value = ""
+    updatePasswordVisible.value = false
+}
 </script>
 <style scoped>
 .container {

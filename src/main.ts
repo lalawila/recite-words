@@ -3,6 +3,7 @@ import App from "./App.vue"
 
 import router from "./router"
 import pinia from "./pinia"
+import common from "./plugins/common"
 
 // element 样式
 import "element-plus/dist/index.css"
@@ -18,5 +19,7 @@ const app = createApp(App)
 app.use(router)
 // pinia
 app.use(pinia)
+
+app.use(common)
 
 app.mount("#app")
