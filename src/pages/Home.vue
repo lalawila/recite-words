@@ -91,4 +91,8 @@ const days = ref(0)
     font-size: 14px;
     font-weight: bold;
 }
+
+a {
+    text-decoration: inherit;
+}
 </style>

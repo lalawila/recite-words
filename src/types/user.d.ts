@@ -15,3 +15,11 @@ interface ApiSelfInfo {
     avatar_url: string
     register_time: number
 }
+
+interface ParamUpdateSelfInfo {
+    username?: string
+    newpassword?: string
+    password?: string
+    bio?: string
+    avatar?: File
+}

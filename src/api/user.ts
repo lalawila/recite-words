@@ -37,18 +37,20 @@ export async function fetchSelfInfo(): Promise<ApiSelfInfo> {
 export async function updateSelfInfo({
     username,
     password,
+    newpassword,
     bio,
-}: {
-    username: string
-    password: string
-    bio: string
-}) {
+    avatar,
+}: ParamUpdateSelfInfo) {
     const tokenStore = useTokenStore()
 
     const data = new FormData()
-    if (username) data.set("username", username)
-    if (password) data.set("password", password)
-    if (bio) data.set("bio", bio)
+    if (username) data.append("username", username)
+    if (password) data.append("password", password)
+
+    if (newpassword) data.append("newpassword", newpassword)
+
+    if (bio) data.append("bio", bio)
+    if (avatar) data.append("avatar", avatar as Blob)
 
     await http.put("/user/info", data, {
         headers: {
