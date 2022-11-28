@@ -1,6 +1,6 @@
 import type { App } from "vue"
 
-const common: Common = {
+const timeTool: TimeTool = {
     formatTime(timestamp: number): string {
         // 时间戳转成时间
         const time = new Date(timestamp * 1000)
@@ -17,6 +17,6 @@ const common: Common = {
 
 export default {
     install(app: App) {
-        app.provide("common", common)
+        app.provide("timeTool", timeTool)
     },
 }

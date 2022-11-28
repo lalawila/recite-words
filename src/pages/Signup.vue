@@ -34,6 +34,7 @@ import { signup } from "@/api/user"
 import { handleApiError } from "@/api/http"
 import { useTokenStore } from "@/stores/token"
 
+import { useWarningMsg } from "@/composables/warningMsg"
 import { ElMessage } from "element-plus"
 
 const tokenStore = useTokenStore()
@@ -44,35 +45,10 @@ const username = ref("")
 const password = ref("")
 const passwordAgain = ref("")
 
-const warningMsg = computed(() => {
-    if (
-        username.value.length > 0 &&
-        (username.value.length < 3 || username.value.length > 12)
-    ) {
-        return "用户名必须为 3 至 12 位"
-    }
-
-    if (
-        password.value.length > 0 &&
-        (password.value.length < 6 || password.value.length > 12)
-    ) {
-        return "密码必须为 6 至 12 位"
-    }
-
-    if (
-        passwordAgain.value.length > 0 &&
-        passwordAgain.value !== password.value
-    ) {
-        return "前后密码不匹配"
-    }
-})
-
-const isCheckFail = computed(() => {
-    return username.value.length === 0 || password.value.length === 0
-})
+const warningMsg = useWarningMsg(username, password, passwordAgain)
 
 async function onsignup() {
-    if (isCheckFail.value) {
+    if (username.value.length === 0 || password.value.length === 0) {
         ElMessage({
             message: "请填写用户名和密码。",
             type: "warning",

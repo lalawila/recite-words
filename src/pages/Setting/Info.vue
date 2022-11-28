@@ -182,6 +182,8 @@ async function updatePassword() {
     gap: 20px;
 }
 .box {
+    border-radius: 50%;
+
     position: relative;
 
     cursor: pointer;

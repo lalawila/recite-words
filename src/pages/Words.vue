@@ -28,14 +28,20 @@
 <script setup lang="ts">
 import type { Ref } from "vue"
 import { getWords } from "@/api/word"
-import { useDistanceFromBottom } from "@/composables/scroll"
+import { useDistanceFromBottom, isScroll } from "@/composables/scroll"
+import { debounce } from "@/common/debounce"
 
 const words: Ref<Word[]> = ref([])
 
 const isFinished = ref(false)
 let page = 1
+const limit = 10
 async function fetchData() {
-    const data = await getWords(page, 2)
+    if (isFinished.value) {
+        return
+    }
+
+    const data = await getWords(page, limit)
     if (data.results.length === 0) {
         // 已经没有更多了
         isFinished.value = true
@@ -44,8 +50,14 @@ async function fetchData() {
 
     words.value = [...words.value, ...data.results]
     page++
+
+    if (isScroll() === false) {
+        // 如果没出现滚动条继续加载数据
+        fetchData()
+    }
 }
 
+// 加载数据
 fetchData()
 
 function play(url: string) {
@@ -53,14 +65,13 @@ function play(url: string) {
     audio.play()
 }
 
+// 防抖
+const debounceFetchData = debounce(fetchData)
 const distance = useDistanceFromBottom()
-watch(
-    () => distance.value < 300,
-    (value) => {
-        // 每次滚动条距离底部小于 300 时加载下一页
-        if (value) fetchData()
-    }
-)
+watch(distance, (value) => {
+    // 每次滚动条距离底部小于 300 时加载下一页
+    if (value < 300) debounceFetchData()
+})
 </script>
 
 <style scoped>
@@ -77,10 +88,11 @@ watch(
     /* 去除 a 元素的样式 */
     color: inherit;
     text-decoration: inherit;
+
+    padding: 20px 0;
 }
 
 .word-item:not(:last-child) {
-    padding: 20px 0;
     border-bottom: 1px solid #666;
 }
 

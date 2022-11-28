@@ -27,19 +27,19 @@
             <div class="row-around text-center">
                 <div>
                     <Text :size="12" color="var(--text-second-color)"
-                        >新词</Text
+                        >陌生 词</Text
                     >
                     <Text :size="18" bold>10</Text>
                 </div>
                 <div>
                     <Text :size="12" color="var(--text-second-color)"
-                        >新词</Text
+                        >复习中</Text
                     >
                     <Text :size="18" bold>10</Text>
                 </div>
                 <div>
                     <Text :size="12" color="var(--text-second-color)"
-                        >新词</Text
+                        >已掌握</Text
                     >
                     <Text :size="18" bold>10</Text>
                 </div>

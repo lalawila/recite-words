@@ -23,3 +23,10 @@ export function useDistanceFromBottom() {
     // 通过返回值暴露所管理的状态
     return distance
 }
+
+export function isScroll() {
+    return (
+        document.documentElement.clientHeight !=
+        document.documentElement.scrollHeight
+    )
+}

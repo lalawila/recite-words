@@ -3,7 +3,7 @@ import App from "./App.vue"
 
 import router from "./router"
 import pinia from "./pinia"
-import common from "./plugins/common"
+import timeTool from "./plugins/timeTool"
 
 // element 样式
 import "element-plus/dist/index.css"
@@ -20,6 +20,6 @@ app.use(router)
 // pinia
 app.use(pinia)
 
-app.use(common)
+app.use(timeTool)
 
 app.mount("#app")
