@@ -26,11 +26,7 @@ export async function login(
 export async function fetchSelfInfo(): Promise<ApiSelfInfo> {
     const tokenStore = useTokenStore()
 
-    const response = await http.get("/user/info", {
-        headers: {
-            Authorization: tokenStore.token,
-        },
-    })
+    const response = await http.get("/user/info")
     return response.data
 }
 
@@ -52,11 +48,7 @@ export async function updateSelfInfo({
     if (bio) data.append("bio", bio)
     if (avatar) data.append("avatar", avatar as Blob)
 
-    const response = await http.put("/user/info", data, {
-        headers: {
-            Authorization: tokenStore.token,
-        },
-    })
+    const response = await http.put("/user/info", data)
 
     return response.data
 }

@@ -55,12 +55,15 @@
             <template v-else>
                 <RouterLink
                     class="btn"
-                    :to="{ name: 'Login', query: { redirect: route.path } }"
+                    :to="{ name: 'Login', query: { redirect: route.fullPath } }"
                     >登录</RouterLink
                 >
                 <RouterLink
                     class="btn"
-                    :to="{ name: 'Signup', query: { redirect: route.path } }"
+                    :to="{
+                        name: 'Signup',
+                        query: { redirect: route.fullPath },
+                    }"
                     >注册</RouterLink
                 >
             </template>
