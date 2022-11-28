@@ -51,7 +51,7 @@ http.interceptors.response.use(
         // 失败时执行
         // 包括超时，网络错误，所有非 2xx 的状态码
 
-        handleApiError(error, function (response) {
+        handleApiError(error, function (response: AxiosResponse) {
             if (response.data.code === 1100) {
                 // 退出登录
                 const tokenStore = useTokenStore()

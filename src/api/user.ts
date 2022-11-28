@@ -37,8 +37,6 @@ export async function updateSelfInfo({
     bio,
     avatar,
 }: ParamUpdateSelfInfo): Promise<ApiUpdateSelfInfo | null> {
-    const tokenStore = useTokenStore()
-
     const data = new FormData()
     if (username) data.append("username", username)
     if (password) data.append("password", password)

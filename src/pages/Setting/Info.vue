@@ -10,7 +10,7 @@
             v-if="userStore.registerTime"
             :size="14"
             color="var(--text-third-color)"
-            >注册于：{{ common?.formatTime(userStore.registerTime) }}</Text
+            >注册于：{{ timeTool?.formatTime(userStore.registerTime) }}</Text
         >
         <ElInput v-model="username" placeholder="请输入用户名~"></ElInput>
         <ElInput
@@ -75,7 +75,7 @@ import { useTokenStore } from "@/stores/token"
 import { useUserStore } from "@/stores/user"
 import { updateSelfInfo } from "@/api/user"
 
-const common = inject<Common>("common")
+const timeTool = inject<TimeTool>("timeTool")
 
 const tokenStore = useTokenStore()
 const userStore = useUserStore()
@@ -101,7 +101,7 @@ const pickerOpts = {
 }
 async function selectAvatar() {
     // open file picker
-    const [handle] = await window.showOpenFilePicker(pickerOpts)
+    const [handle] = await showOpenFilePicker(pickerOpts)
     avatar = await handle.getFile()
 
     // 创建一个指向内存中文件的 URL
