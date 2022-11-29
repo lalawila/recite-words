@@ -1,5 +1,5 @@
 <template>
-    <Container :width="400" class="container">
+    <Container :width="480" class="container">
         <template v-if="stage == Stage.word">
             <div>
                 <Text :size="36" :bottom="20" bold>{{ task.word }}</Text>
@@ -8,7 +8,7 @@
                         class="icon"
                         @click="playAudio(task.phonetic_audio)"
                     ></VideoPlay>
-                    <Text :size="14" color="var(--text-third-color)"
+                    <Text :left="20" :size="14" color="var(--text-third-color)"
                         >/ {{ task.phonetic }} /</Text
                     >
                 </div>
@@ -47,10 +47,25 @@
                 </div>
             </div>
             <div>
-                <Text>根据提示，判断释义</Text>
-                <div>
-                    <div>例句：</div>
-                    <div>{{ task.example_en }}</div>
+                <Text
+                    :size="14"
+                    :bottom="10"
+                    color="var(--text-third-color)"
+                    center
+                    >根据提示，判断释义</Text
+                >
+                <div class="example">
+                    <Text
+                        class="label"
+                        color="var(--text-third-color)"
+                        :size="14"
+                        >例句</Text
+                    >
+                    <Text bold>{{ task.example_en }}</Text>
+                    <VideoPlay
+                        class="icon"
+                        @click="playAudio(task.example_audio)"
+                    ></VideoPlay>
                 </div>
             </div>
             <div class="bottom">
@@ -73,7 +88,7 @@
             </div>
         </template>
         <template v-else-if="stage == Stage.detail">
-            <WordDetail :wordId="task.word_id"></WordDetail>
+            <Detail :word-id="task.word_id"></Detail>
             <ElButton
                 size="large"
                 class="button"
@@ -87,8 +102,8 @@
 </template>
 <script setup lang="ts">
 import { VideoPlay } from "@element-plus/icons-vue"
-import { getTask, setTaskResult, TaskResult } from "@/api/task"
 import { playAudio } from "@/common/audio"
+import { getTask, setTaskResult, TaskResult } from "@/api/task"
 
 enum Stage {
     word, // 显示单词
@@ -115,6 +130,7 @@ function prompt() {
 async function forget() {
     await setTaskResult(task.value.task_id, TaskResult.forget)
 
+    playAudio(task.value.example_audio)
     stage.value = Stage.detail
 }
 
@@ -145,8 +161,22 @@ async function next() {
     cursor: pointer;
 
     color: var(--primary-color);
+}
 
-    margin-right: 10px;
+.example {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    background-color: var(--background-second-color);
+
+    padding: 20px;
+
+    border-radius: 8px;
+}
+
+.label {
+    flex-shrink: 0;
 }
 
 .bottom {
