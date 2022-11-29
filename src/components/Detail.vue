@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="detail">
         <div class="row-between">
             <Text :size="36" bold>{{ wordDetail.word }}</Text>
             <VideoPlay
@@ -38,6 +38,9 @@ const props = defineProps({
 const wordDetail = await getWordDetail(props.wordId)
 </script>
 <style scoped>
+.detail {
+    width: 100%;
+}
 .explain {
     margin: 10px 0;
 }

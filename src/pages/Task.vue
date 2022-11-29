@@ -1,6 +1,6 @@
 <template>
-    <Container :width="480" class="container">
-        <template v-if="stage == Stage.word">
+    <Container :width="480">
+        <div class="container" v-show="stage == Stage.word">
             <div>
                 <Text :size="36" :bottom="20" bold>{{ task.word }}</Text>
                 <div class="row-center">
@@ -32,8 +32,8 @@
                     >提示一下</ElButton
                 >
             </div>
-        </template>
-        <template v-else-if="stage == Stage.prompt">
+        </div>
+        <div class="container" v-show="stage == Stage.prompt">
             <div>
                 <Text :size="36" :bottom="20" bold>{{ task.word }}</Text>
                 <div class="row-center">
@@ -41,7 +41,7 @@
                         class="icon"
                         @click="playAudio(task.phonetic_audio)"
                     ></VideoPlay>
-                    <Text :size="14" color="var(--text-third-color)"
+                    <Text :left="20" :size="14" color="var(--text-third-color)"
                         >/ {{ task.phonetic }} /</Text
                     >
                 </div>
@@ -86,8 +86,8 @@
                     >没想起来</ElButton
                 >
             </div>
-        </template>
-        <template v-else-if="stage == Stage.detail">
+        </div>
+        <div class="container" v-show="stage == Stage.detail">
             <Detail :word-id="task.word_id"></Detail>
             <ElButton
                 size="large"
@@ -97,7 +97,7 @@
                 @click="next"
                 >学习下一个</ElButton
             >
-        </template>
+        </div>
     </Container>
 </template>
 <script setup lang="ts">
@@ -125,12 +125,13 @@ async function remember() {
     stage.value = Stage.detail
 }
 function prompt() {
+    playAudio(task.value.example_audio)
+
     stage.value = Stage.prompt
 }
 async function forget() {
     await setTaskResult(task.value.task_id, TaskResult.forget)
 
-    playAudio(task.value.example_audio)
     stage.value = Stage.detail
 }
 
@@ -143,6 +144,8 @@ async function next() {
 </script>
 <style scoped>
 .container {
+    width: 100%;
+
     display: flex;
 
     flex-direction: column;
@@ -161,6 +164,8 @@ async function next() {
     cursor: pointer;
 
     color: var(--primary-color);
+
+    flex-shrink: 0;
 }
 
 .example {

@@ -25,49 +25,53 @@
                 >修改密码</ElButton
             >
         </div>
+        <ElDialog
+            v-model="confirmPasswordVisible"
+            title="修改用户名需要确认密码"
+            width="380"
+            center
+        >
+            <ElInput v-model="password" placeholder="请确认密码~"
+                ><template #prepend>确认密码</template></ElInput
+            >
+            <template #footer>
+                <span class="dialog-footer">
+                    <el-button type="primary" @click="updateInfo"
+                        >确认密码</el-button
+                    >
+                </span>
+            </template>
+        </ElDialog>
+        <ElDialog
+            v-model="updatePasswordVisible"
+            title="修改密码"
+            width="380"
+            center
+        >
+            <ElInput
+                class="bottom-20"
+                v-model="password"
+                placeholder="请输入旧密码~"
+                size="large"
+            >
+                <template #prepend>旧密码</template>
+            </ElInput>
+            <ElInput
+                v-model="newpassword"
+                placeholder="请输入新密码~"
+                size="large"
+            >
+                <template #prepend>新密码</template></ElInput
+            >
+            <template #footer>
+                <span class="dialog-footer">
+                    <el-button type="primary" @click="updatePassword"
+                        >更新密码</el-button
+                    >
+                </span>
+            </template>
+        </ElDialog>
     </Container>
-    <ElDialog
-        v-model="confirmPasswordVisible"
-        title="修改用户名需要确认密码"
-        width="380px"
-        center
-    >
-        <ElInput v-model="password" placeholder="请确认密码~"
-            ><template #prepend>确认密码</template></ElInput
-        >
-        <template #footer>
-            <span class="dialog-footer">
-                <el-button type="primary" @click="updateInfo"
-                    >确认密码</el-button
-                >
-            </span>
-        </template>
-    </ElDialog>
-    <ElDialog
-        v-model="updatePasswordVisible"
-        title="修改密码"
-        width="380px"
-        center
-    >
-        <ElInput
-            class="bottom-20"
-            v-model="password"
-            placeholder="请输入旧密码~"
-            size="large"
-        >
-            <template #prepend>旧密码</template>
-        </ElInput>
-        <ElInput v-model="newpassword" placeholder="请输入新密码~" size="large">
-            <template #prepend>新密码</template></ElInput
-        >
-        <template #footer>
-            <span class="dialog-footer">
-                <el-button type="primary" @click="updatePassword"
-                    >更新密码</el-button
-                >
-            </span>
-        </template>
-    </ElDialog>
 </template>
 <script setup lang="ts">
 import { Camera } from "@element-plus/icons-vue"
