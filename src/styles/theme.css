@@ -2,6 +2,8 @@
     /* 日间 */
     color-scheme: light;
 
+    --primary-color: hsl(161, 43%, 55%);
+
     /* 覆盖 element 的主题色 */
     --el-color-primary: hsl(161, 43%, 55%);
     --el-color-primary-light-3: hsl(161, 43%, 65%);
@@ -23,6 +25,8 @@
 :root.dark {
     /* 夜间 */
     color-scheme: dark;
+
+    --primary-color: hsl(161, 43%, 55%);
 
     /* 覆盖 element 的主题色 */
     --el-color-primary: hsl(161, 43%, 55%);

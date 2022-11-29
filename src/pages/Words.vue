@@ -15,7 +15,7 @@
                         >/{{ word.us_phonetic }}/</Text
                     >
                 </div>
-                <button @click.prevent="play(word.us_phonetic_audio)">
+                <button @click.prevent="playAudio(word.us_phonetic_audio)">
                     play
                 </button>
             </div>
@@ -30,6 +30,7 @@ import type { Ref } from "vue"
 import { getWords } from "@/api/word"
 import { useDistanceFromBottom, isScroll } from "@/composables/scroll"
 import { debounce } from "@/common/debounce"
+import { playAudio } from "@/common/audio"
 
 const words: Ref<Word[]> = ref([])
 
@@ -59,11 +60,6 @@ async function fetchData() {
 
 // 加载数据
 fetchData()
-
-function play(url: string) {
-    const audio = new Audio(url)
-    audio.play()
-}
 
 // 防抖
 const debounceFetchData = debounce(fetchData)

@@ -1,5 +1,5 @@
 <template>
-    <header class="navigation row-between">
+    <header ref="navigation" class="navigation row-between">
         <div class="only-pc">
             <RouterLink class="btn" :to="{ name: 'Home' }">背单词</RouterLink>
             <RouterLink class="btn" :to="{ name: 'Words' }">词表</RouterLink>
@@ -76,6 +76,7 @@ import { useUserStore } from "@/stores/user"
 import { useThemeStore, Theme } from "@/stores/theme"
 
 import { Sunny, Moon } from "@element-plus/icons-vue"
+import type { Ref } from "vue"
 
 const tokenStore = useTokenStore()
 const userStore = useUserStore()

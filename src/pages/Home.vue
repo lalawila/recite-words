@@ -45,12 +45,20 @@
                 </div>
             </div>
         </div>
-        <ElButton type="primary" size="large" round>开始学习</ElButton>
+        <ElButton
+            class="button"
+            type="primary"
+            size="large"
+            round
+            @click="router.push({ name: 'Task' })"
+            >开始学习</ElButton
+        >
     </Container>
 </template>
 <script setup lang="ts">
 import { Notebook, ArrowRightBold } from "@element-plus/icons-vue"
 
+const router = useRouter()
 const days = ref(0)
 </script>
 <style scoped>
@@ -94,5 +102,13 @@ const days = ref(0)
 
 a {
     text-decoration: inherit;
+}
+.button {
+    display: block;
+
+    width: 100%;
+    max-width: 400px;
+
+    margin: 0 auto;
 }
 </style>

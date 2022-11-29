@@ -37,6 +37,12 @@ export async function updateSelfInfo({
     bio,
     avatar,
 }: ParamUpdateSelfInfo): Promise<ApiUpdateSelfInfo | null> {
+    if (username || newpassword) {
+        // 更新用户名或密码
+        // 必须提供旧密码
+        console.assert(password != undefined, "修改用户名或密码必须提供旧密码")
+    }
+
     const data = new FormData()
     if (username) data.append("username", username)
     if (password) data.append("password", password)

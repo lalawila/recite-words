@@ -22,6 +22,11 @@ const routes = [
         component: () => import("@/pages/Words.vue"),
     },
     {
+        name: "Task",
+        path: "/task",
+        component: () => import("@/pages/Task.vue"),
+    },
+    {
         name: "WordDetail",
         path: "/words/:id",
         component: () => import("@/pages/WordDetail.vue"),
@@ -30,13 +35,13 @@ const routes = [
         name: "Login",
         path: "/login",
         component: () => import("@/pages/Login.vue"),
-        meta: { requiresNoAuth: false },
+        meta: { requiresNoAuth: true },
     },
     {
         name: "Signup",
         path: "/signup",
         component: () => import("@/pages/Signup.vue"),
-        meta: { requiresNoAuth: false },
+        meta: { requiresNoAuth: true },
     },
     {
         name: "SettingInfo",
