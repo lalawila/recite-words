@@ -16,6 +16,9 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
+    textAlign: {
+        type: String,
+    },
     center: {
         type: Boolean,
         default: false,
@@ -63,8 +66,8 @@ const weight = computed(() => {
     return "unset"
 })
 
-const textCenter = computed(() => {
-    return props.center ? "center" : "unset"
+const textAlign = computed(() => {
+    return props.center ? "center" : props.textAlign || "unset"
 })
 </script>
 <style scoped>
@@ -74,7 +77,7 @@ const textCenter = computed(() => {
     font-size: v-bind(size);
     font-weight: v-bind(weight);
 
-    text-align: v-bind(textCenter);
+    text-align: v-bind(textAlign);
 
     margin: v-bind(margin);
 }
