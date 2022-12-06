@@ -4,7 +4,7 @@
             <RouterLink class="btn" :to="{ name: 'Home' }">背单词</RouterLink>
             <RouterLink class="btn" :to="{ name: 'Words' }">词表</RouterLink>
             <RouterLink class="btn" :to="{ name: 'Statistics' }"
-                >数据统计</RouterLink
+                >学习数据</RouterLink
             >
             <ElSwitch
                 class="theme-switch"
@@ -19,7 +19,7 @@
             <RouterLink class="btn" :to="{ name: 'Home' }">背单词</RouterLink>
             <RouterLink class="btn" :to="{ name: 'Words' }">词表</RouterLink>
             <RouterLink class="btn" :to="{ name: 'Statistics' }"
-                >数据统计</RouterLink
+                >学习数据</RouterLink
             >
             <ElSwitch
                 class="theme-switch"
