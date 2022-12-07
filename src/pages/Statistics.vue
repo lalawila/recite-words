@@ -21,8 +21,10 @@ import type { EChartsType } from "echarts/core"
 
 const themeStore = useThemeStore()
 
-const wordData = await getStatisticsWord()
-const sevenData = await getStatisticsSeven()
+const [wordData, sevenData] = await Promise.all([
+    getStatisticsWord(),
+    getStatisticsSeven(),
+])
 
 const todayElement: Ref<HTMLElement | null> = ref(null)
 const wordElement: Ref<HTMLElement | null> = ref(null)
