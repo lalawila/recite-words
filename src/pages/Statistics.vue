@@ -8,7 +8,7 @@
 </template>
 <script setup lang="ts">
 import {
-    getStatisticsWord,
+    getStatisticsBook,
     getStatisticsSeven,
     getStatisticsToday,
 } from "@/api/statistics"
@@ -18,7 +18,7 @@ import type { Ref } from "vue"
 import { Theme, useThemeStore } from "@/stores/theme"
 
 import initTodayEchart from "@/common/echarts/today"
-import initWordEchart from "@/common/echarts/word"
+import initBookEchart from "@/common/echarts/word"
 import initSevenEchart from "@/common/echarts/seven"
 import initDurationEchart from "@/common/echarts/duration"
 
@@ -26,9 +26,9 @@ import type { EChartsType } from "echarts/core"
 
 const themeStore = useThemeStore()
 
-const [todayData, wordData, sevenData] = await Promise.all([
+const [todayData, bookData, sevenData] = await Promise.all([
     getStatisticsToday(),
-    getStatisticsWord(),
+    getStatisticsBook(),
     getStatisticsSeven(),
 ])
 
@@ -54,10 +54,10 @@ function createCharts(theme: string) {
         todayData
     )
 
-    wordEchart = initWordEchart(
+    wordEchart = initBookEchart(
         wordElement.value as HTMLElement,
         theme,
-        wordData
+        bookData
     )
     sevenEchart = initSevenEchart(
         sevenElement.value as HTMLElement,
