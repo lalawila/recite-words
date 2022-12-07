@@ -1,3 +1,5 @@
+import { ElMessage } from "element-plus"
+
 import { createRouter, createWebHistory } from "vue-router"
 import { useTokenStore } from "@/stores/token"
 
@@ -69,6 +71,10 @@ router.beforeEach((to, from) => {
     if (to.meta.requiresAuth && !tokenStore.isLogined) {
         // 此路由需要授权，请检查是否已登录
         // 如果没有，则重定向到登录页面
+        ElMessage({
+            message: "请先登录",
+            type: "info",
+        })
         return {
             name: "Login",
             // 登录成功后跳转

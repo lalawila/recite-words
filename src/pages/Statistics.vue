@@ -8,11 +8,16 @@
     </Container>
 </template>
 <script setup lang="ts">
-import { getStatisticsWord, getStatisticsSeven } from "@/api/statistics"
+import {
+    getStatisticsWord,
+    getStatisticsSeven,
+    getStatisticsToday,
+} from "@/api/statistics"
 // import darkTheme from "@/assets/echart/darkTheme"
 import type { Ref } from "vue"
 import { Theme, useThemeStore } from "@/stores/theme"
 
+import initTodayEchart from "@/common/echarts/today"
 import initWordEchart from "@/common/echarts/word"
 import initSevenEchart from "@/common/echarts/seven"
 import initDurationEchart from "@/common/echarts/duration"
@@ -21,7 +26,8 @@ import type { EChartsType } from "echarts/core"
 
 const themeStore = useThemeStore()
 
-const [wordData, sevenData] = await Promise.all([
+const [todayData, wordData, sevenData] = await Promise.all([
+    getStatisticsToday(),
     getStatisticsWord(),
     getStatisticsSeven(),
 ])
@@ -31,6 +37,7 @@ const wordElement: Ref<HTMLElement | null> = ref(null)
 const durationElement: Ref<HTMLElement | null> = ref(null)
 const sevenElement: Ref<HTMLElement | null> = ref(null)
 
+let todaynEchart: EChartsType
 let wordEchart: EChartsType
 let sevenEchart: EChartsType
 let durationEchart: EChartsType
@@ -41,6 +48,12 @@ onMounted(() => {
 })
 
 function createCharts(theme: string) {
+    todaynEchart = initTodayEchart(
+        todayElement.value as HTMLElement,
+        theme,
+        todayData
+    )
+
     wordEchart = initWordEchart(
         wordElement.value as HTMLElement,
         theme,
@@ -60,7 +73,9 @@ function createCharts(theme: string) {
 }
 
 function disposeEcharts() {
+    todaynEchart.dispose()
     wordEchart.dispose()
+    durationEchart.dispose()
     sevenEchart.dispose()
 }
 

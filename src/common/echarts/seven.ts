@@ -72,7 +72,12 @@ export default function (
             {
                 name: "总数",
                 type: "line",
-                data: data.map((item) => item.total_amount),
+                data: data.map(
+                    (item) =>
+                        item.simple_amount +
+                        item.remember_amount +
+                        item.forget_amount
+                ),
             },
             {
                 name: "简单",

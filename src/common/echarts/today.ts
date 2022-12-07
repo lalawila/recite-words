@@ -24,14 +24,14 @@ type EChartsOption = echarts.ComposeOption<
 export default function (
     element: HTMLElement,
     theme: string,
-    data: ApiStatisticsWord
+    data: ApiStatisticsToday
 ) {
     // 创建单词书掌握情况
     // 基于准备好的dom，初始化echarts实例
     const myChart = echarts.init(element, theme)
     const options: EChartsOption = {
         title: {
-            text: "单词书掌握情况",
+            text: "今日学习情况",
         },
         tooltip: {
             trigger: "item",
@@ -42,7 +42,7 @@ export default function (
         },
         series: [
             {
-                name: "单词掌握程度",
+                name: "任务完成情况",
                 type: "pie",
                 radius: ["40%", "70%"],
                 avoidLabelOverlap: false,
@@ -67,9 +67,9 @@ export default function (
                 },
                 data: [
                     { value: data.unlearn_amount, name: "未学习" },
-                    { value: data.new_amount, name: "陌生" },
-                    { value: data.know_amount, name: "熟悉" },
-                    { value: data.master_amount, name: "掌握" },
+                    { value: data.simple_amount, name: "简单" },
+                    { value: data.remember_amount, name: "记得" },
+                    { value: data.forget_amount, name: "忘记" },
                 ],
             },
         ],
