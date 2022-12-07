@@ -1,7 +1,7 @@
 import http from "./http"
 
-export async function getStatisticsWord(): Promise<ApiStatisticsWord> {
-    const response = await http.get("/statistics/word")
+export async function getStatisticsBook(): Promise<ApiStatisticsBook> {
+    const response = await http.get("/statistics/book")
     return response.data
 }
 

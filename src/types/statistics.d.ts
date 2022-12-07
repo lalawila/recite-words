@@ -1,8 +1,8 @@
-interface ApiStatisticsWord {
+interface ApiStatisticsBook {
     unlearn_amount: number // 未学习
-    new_amount: number
-    know_amount: number
-    master_amount: number
+    new_amount: number // 陌生单词
+    know_amount: number // 熟悉单词
+    master_amount: number // 掌握单词
 }
 
 interface StatisticsSeven {
