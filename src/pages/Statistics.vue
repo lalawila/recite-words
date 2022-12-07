@@ -1,138 +1,86 @@
 <template>
     <Container>
         <h1>学习数据</h1>
-        <Text text-align="right">单词掌握程度</Text>
+        <div ref="todayElement" class="chart"></div>
         <div ref="wordElement" class="chart"></div>
-        <Text text-align="right">过去一周学习情况</Text>
+        <div ref="durationElement" class="chart"></div>
         <div ref="sevenElement" class="chart"></div>
     </Container>
 </template>
 <script setup lang="ts">
 import { getStatisticsWord, getStatisticsSeven } from "@/api/statistics"
-import * as echarts from "echarts"
-import theme from "@/assets/echartTheme"
+// import darkTheme from "@/assets/echart/darkTheme"
 import type { Ref } from "vue"
+import { Theme, useThemeStore } from "@/stores/theme"
 
-const word = await getStatisticsWord()
-const seven = await getStatisticsSeven()
+import initWordEchart from "@/common/echarts/word"
+import initSevenEchart from "@/common/echarts/seven"
+import initDurationEchart from "@/common/echarts/duration"
 
+import type { EChartsType } from "echarts/core"
+
+const themeStore = useThemeStore()
+
+const wordData = await getStatisticsWord()
+const sevenData = await getStatisticsSeven()
+
+const todayElement: Ref<HTMLElement | null> = ref(null)
 const wordElement: Ref<HTMLElement | null> = ref(null)
+const durationElement: Ref<HTMLElement | null> = ref(null)
 const sevenElement: Ref<HTMLElement | null> = ref(null)
 
+let wordEchart: EChartsType
+let sevenEchart: EChartsType
+let durationEchart: EChartsType
+
 onMounted(() => {
-    echarts.registerTheme("my-theme", theme)
-    initWord()
-    initSeven()
+    // echarts.registerTheme("dark", darkTheme)
+    createCharts(themeStore.theme === Theme.dark ? "dark" : "light")
 })
 
-function initWord() {
-    // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(wordElement.value as HTMLElement, "my-theme")
-    // 绘制图表
-    myChart.setOption({
-        tooltip: {
-            trigger: "item",
-        },
-        legend: {
-            top: "5%",
-            left: "center",
-        },
-        series: [
-            {
-                name: "单词掌握程度",
-                type: "pie",
-                radius: ["40%", "70%"],
-                avoidLabelOverlap: false,
-                itemStyle: {
-                    borderRadius: 10,
-                    borderColor: "#fff",
-                    borderWidth: 2,
-                },
-                label: {
-                    show: false,
-                    position: "center",
-                },
-                emphasis: {
-                    label: {
-                        show: true,
-                        fontSize: "40",
-                        fontWeight: "bold",
-                    },
-                },
-                labelLine: {
-                    show: false,
-                },
-                data: [
-                    { value: word.unlearned, name: "未学习" },
-                    { value: word.new, name: "陌生" },
-                    { value: word.know, name: "熟悉" },
-                    { value: word.master, name: "掌握" },
-                ],
-            },
-        ],
-    })
+function createCharts(theme: string) {
+    wordEchart = initWordEchart(
+        wordElement.value as HTMLElement,
+        theme,
+        wordData
+    )
+    sevenEchart = initSevenEchart(
+        sevenElement.value as HTMLElement,
+        theme,
+        sevenData
+    )
+
+    durationEchart = initDurationEchart(
+        durationElement.value as HTMLElement,
+        theme,
+        sevenData
+    )
 }
 
-function initSeven() {
-    // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(sevenElement.value as HTMLElement, "my-theme")
-    // 绘制图表
-    myChart.setOption({
-        title: {
-            text: "过去一周学习情况",
-        },
-        tooltip: {
-            trigger: "axis",
-        },
-        legend: {
-            data: ["背单词数", "简单", "记住", "忘记"],
-        },
-        grid: {
-            left: "3%",
-            right: "4%",
-            bottom: "3%",
-            containLabel: true,
-        },
-        xAxis: {
-            type: "category",
-            boundaryGap: false,
-            data: seven.map((item) => item.date),
-        },
-        yAxis: {
-            type: "value",
-        },
-        series: [
-            {
-                name: "总数",
-                type: "line",
-                stack: "Total",
-                data: seven.map((item) => item.total_amount),
-            },
-            {
-                name: "简单",
-                type: "line",
-                stack: "Total",
-                data: seven.map((item) => item.simple_amount),
-            },
-            {
-                name: "记住",
-                type: "line",
-                stack: "Total",
-                data: seven.map((item) => item.remember_amount),
-            },
-            {
-                name: "忘记",
-                type: "line",
-                stack: "Total",
-                data: seven.map((item) => item.forget_amount),
-            },
-        ],
-    })
+function disposeEcharts() {
+    wordEchart.dispose()
+    sevenEchart.dispose()
 }
+
+// 切换图表的主题
+watch(
+    () => themeStore.theme,
+    (value) => {
+        if (value === Theme.dark) {
+            disposeEcharts()
+            createCharts("dark")
+        } else {
+            disposeEcharts()
+            createCharts("light")
+        }
+    }
+)
 </script>
 <style scoped>
 .chart {
     width: 100%;
     aspect-ratio: 16 / 9;
+
+    margin: 60px 0;
 }
 </style>
