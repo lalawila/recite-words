@@ -5,7 +5,7 @@ import router from "./router"
 import pinia from "./pinia"
 import timeTool from "./plugins/timeTool"
 
-// element 样式
+// element 样式，有时自动引入有 bug, 不能自动引入样式
 import "element-plus/dist/index.css"
 // element 夜间模式
 import "element-plus/theme-chalk/dark/css-vars.css"

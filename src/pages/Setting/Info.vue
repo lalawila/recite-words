@@ -79,6 +79,8 @@ import { useTokenStore } from "@/stores/token"
 import { useUserStore } from "@/stores/user"
 import { updateSelfInfo } from "@/api/user"
 
+import { ElMessage } from "element-plus"
+
 const timeTool = inject<TimeTool>("timeTool")
 
 const tokenStore = useTokenStore()
