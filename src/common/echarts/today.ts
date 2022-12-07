@@ -67,9 +67,9 @@ export default function (
                 },
                 data: [
                     { value: data.unlearn_amount, name: "未学习" },
-                    { value: data.simple_amount, name: "简单" },
-                    { value: data.remember_amount, name: "记得" },
                     { value: data.forget_amount, name: "忘记" },
+                    { value: data.remember_amount, name: "记得" },
+                    { value: data.simple_amount, name: "简单" },
                 ],
             },
         ],

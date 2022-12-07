@@ -1,6 +1,5 @@
 <template>
     <Container>
-        <h1>学习数据</h1>
         <div ref="todayElement" class="chart"></div>
         <div ref="wordElement" class="chart"></div>
         <div ref="durationElement" class="chart"></div>
@@ -13,7 +12,8 @@ import {
     getStatisticsSeven,
     getStatisticsToday,
 } from "@/api/statistics"
-// import darkTheme from "@/assets/echart/darkTheme"
+import * as echarts from "echarts/core"
+import darkTheme from "@/assets/echart/darkTheme"
 import type { Ref } from "vue"
 import { Theme, useThemeStore } from "@/stores/theme"
 
@@ -43,7 +43,7 @@ let sevenEchart: EChartsType
 let durationEchart: EChartsType
 
 onMounted(() => {
-    // echarts.registerTheme("dark", darkTheme)
+    echarts.registerTheme("dark", darkTheme)
     createCharts(themeStore.theme === Theme.dark ? "dark" : "light")
 })
 

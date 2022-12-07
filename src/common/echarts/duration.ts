@@ -20,7 +20,7 @@ export default function (
     const myChart = echarts.init(element, theme)
     const options: EChartsOption = {
         title: {
-            text: "过去一周学习时长",
+            text: "过去一周学习时长（分钟）",
         },
         xAxis: {
             type: "category",
