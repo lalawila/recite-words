@@ -2,14 +2,14 @@
 
 /* 大于等于 768px 像素隐藏 */
 @media screen and (min-width: 768px) {
-    .only-phone {
+    :root .only-phone {
         display: none;
     }
 }
 
 /* 小于 768px 像素隐藏 */
 @media not screen and (min-width: 768px) {
-    .only-pc {
+    :root .only-pc {
         display: none;
     }
 }

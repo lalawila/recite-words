@@ -1,6 +1,7 @@
 <template>
-    <header ref="navigation" class="navigation row-between">
-        <div class="only-pc">
+    <header class="navigation row-between">
+        <div class="only-pc row-start">
+            <img class="logo" src="/logo.png" />
             <RouterLink class="btn" :to="{ name: 'Home' }">背单词</RouterLink>
             <RouterLink class="btn" :to="{ name: 'Words' }">词表</RouterLink>
             <RouterLink class="btn" :to="{ name: 'Statistics' }"
@@ -16,6 +17,7 @@
             />
         </div>
         <Hamburger class="only-phone">
+            <img class="logo" src="/logo.png" />
             <RouterLink class="btn" :to="{ name: 'Home' }">背单词</RouterLink>
             <RouterLink class="btn" :to="{ name: 'Words' }">词表</RouterLink>
             <RouterLink class="btn" :to="{ name: 'Statistics' }"
@@ -104,6 +106,12 @@ a {
     color: inherit;
     text-decoration: inherit;
 }
+
+.logo {
+    width: 36px;
+    margin-right: 20px;
+}
+
 .btn {
     font-weight: bold;
 
