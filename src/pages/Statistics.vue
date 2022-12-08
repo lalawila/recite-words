@@ -26,9 +26,11 @@ import type { EChartsType } from "echarts/core"
 
 const themeStore = useThemeStore()
 
-let todayData: ApiStatisticsToday,
-    bookData: ApiStatisticsBook,
-    sevenData: ApiStatisticsSeven
+const [todayData, bookData, sevenData] = await Promise.all([
+    getStatisticsToday(),
+    getStatisticsBook(),
+    getStatisticsSeven(),
+])
 
 const todayElement: Ref<HTMLElement | null> = ref(null)
 const wordElement: Ref<HTMLElement | null> = ref(null)
@@ -41,21 +43,6 @@ let sevenEchart: EChartsType
 let durationEchart: EChartsType
 
 onMounted(async () => {
-    // 如果放在 stetup 中会有以下 bug
-    // Uncaught (in promise) TypeError: Cannot read properties of null (reading 'parentNode')
-    // at parentNode (runtime-dom.esm-bundler.js:35:30)
-    // at ReactiveEffect.componentUpdateFn [as fn] (runtime-core.esm-bundler.js:5697:17)
-    // at ReactiveEffect.run (reactivity.esm-bundler.js:187:25)
-    // at instance.update (runtime-core.esm-bundler.js:5729:56)
-    // at callWithErrorHandling (runtime-core.esm-bundler.js:155:36)
-    // at flushJobs (runtime-core.esm-bundler.js:388:17)
-
-    ;[todayData, bookData, sevenData] = await Promise.all([
-        getStatisticsToday(),
-        getStatisticsBook(),
-        getStatisticsSeven(),
-    ])
-
     echarts.registerTheme("dark", darkTheme)
     createCharts(themeStore.theme === Theme.dark ? "dark" : "light")
 })

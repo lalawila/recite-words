@@ -1,4 +1,6 @@
 interface ApiStatisticsBook {
+    book_amount: number // 全部单词数
+    learned_amount: number // 已学单词数
     unlearn_amount: number // 未学习
     new_amount: number // 陌生单词
     know_amount: number // 熟悉单词

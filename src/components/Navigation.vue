@@ -15,6 +15,7 @@
                 :active-icon="Moon"
                 :inactive-icon="Sunny"
             />
+            <Trans class="translate" @click="langStore.locale = 'en'" />
         </div>
         <Hamburger class="only-phone">
             <img class="logo" src="/logo.png" />
@@ -78,12 +79,16 @@
 import { useTokenStore } from "@/stores/token"
 import { useUserStore } from "@/stores/user"
 import { useThemeStore, Theme } from "@/stores/theme"
+import { useLangStore } from "@/stores/lang"
 
 import { Sunny, Moon } from "@element-plus/icons-vue"
+
+import Trans from "@/assets/icons/trans.svg?component"
 
 const tokenStore = useTokenStore()
 const userStore = useUserStore()
 const themeStore = useThemeStore()
+const langStore = useLangStore()
 
 const route = useRoute()
 const router = useRouter()
@@ -120,5 +125,10 @@ a {
     padding: 10px 20px;
 
     --el-switch-on-color: var(--background-second-color);
+}
+
+.translate {
+    width: 25px;
+    fill: var(--text-third-color);
 }
 </style>

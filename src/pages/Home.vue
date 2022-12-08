@@ -21,10 +21,23 @@
                 <ElIcon><ArrowRightBold /></ElIcon>
             </RouterLink>
             <div class="progress row-between">
-                <span>已完成 78.2%</span>
-                <span>6114/7818词</span>
+                <span
+                    >已完成
+                    {{
+                        (
+                            bookData.learned_amount / bookData.book_amount
+                        ).toFixed(2)
+                    }}%</span
+                >
+                <span
+                    >{{ bookData.learned_amount }} /
+                    {{ bookData.book_amount }} 词</span
+                >
             </div>
-            <ElProgress :percentage="70" :show-text="false" />
+            <ElProgress
+                :percentage="bookData.learned_amount / bookData.book_amount"
+                :show-text="false"
+            />
 
             <div class="row-around text-center">
                 <div>
@@ -58,12 +71,13 @@
     </Container>
 </template>
 <script setup lang="ts">
-import { getStatisticsToday } from "@/api/statistics"
+import { getStatisticsBook, getStatisticsToday } from "@/api/statistics"
 import { getLearnSetting } from "@/api/user"
 import { Notebook, ArrowRightBold } from "@element-plus/icons-vue"
 
-const [todayData, learnSetting] = await Promise.all([
+const [todayData, bookData, learnSetting] = await Promise.all([
     getStatisticsToday(),
+    getStatisticsBook(),
     getLearnSetting(),
 ])
 

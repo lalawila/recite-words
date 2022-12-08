@@ -4,6 +4,7 @@ import App from "./App.vue"
 import router from "./router"
 import pinia from "./pinia"
 import timeTool from "./plugins/timeTool"
+import i18n from "./plugins/i18n"
 
 // element 样式，有时自动引入有 bug, 不能自动引入样式
 import "element-plus/dist/index.css"
@@ -21,5 +22,7 @@ app.use(router)
 app.use(pinia)
 
 app.use(timeTool)
+
+app.use(i18n)
 
 app.mount("#app")
