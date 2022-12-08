@@ -34,20 +34,22 @@
         </Hamburger>
         <div>
             <template v-if="tokenStore.isLogined">
-                <ElDropdown @command="handleCommand" size="large">
+                <ElDropdown size="large">
                     <ElAvatar :src="userStore.avatarUrl" />
                     <template #dropdown>
                         <ElDropdownMenu>
                             <Text :vertical="5" bold center>{{
                                 userStore.username
                             }}</Text>
-                            <ElDropdownItem command="info"
+                            <ElDropdownItem
+                                @click="router.push({ name: 'SettingInfo' })"
                                 >个人设置</ElDropdownItem
                             >
-                            <ElDropdownItem command="info"
+                            <ElDropdownItem
+                                @click="router.push({ name: 'SettingLearn' })"
                                 >学习设置</ElDropdownItem
                             >
-                            <ElDropdownItem command="logout" divided
+                            <ElDropdownItem @click="tokenStore.logout()" divided
                                 >退出登录</ElDropdownItem
                             >
                         </ElDropdownMenu>
@@ -78,7 +80,6 @@ import { useUserStore } from "@/stores/user"
 import { useThemeStore, Theme } from "@/stores/theme"
 
 import { Sunny, Moon } from "@element-plus/icons-vue"
-import type { Ref } from "vue"
 
 const tokenStore = useTokenStore()
 const userStore = useUserStore()
@@ -86,14 +87,6 @@ const themeStore = useThemeStore()
 
 const route = useRoute()
 const router = useRouter()
-
-function handleCommand(command: string) {
-    if (command === "info") {
-        router.push({ name: "SettingInfo" })
-    } else if (command === "logout") {
-        tokenStore.logout()
-    }
-}
 </script>
 <style scoped>
 .navigation {

@@ -63,28 +63,21 @@ onMounted(async () => {
 onUnmounted(disposeEcharts)
 
 function createCharts(theme: string) {
-    todaynEchart = initTodayEchart(
-        todayElement.value as HTMLElement,
-        theme,
-        todayData
-    )
+    if (todayElement.value)
+        todaynEchart = initTodayEchart(todayElement.value, theme, todayData)
 
-    wordEchart = initBookEchart(
-        wordElement.value as HTMLElement,
-        theme,
-        bookData
-    )
-    sevenEchart = initSevenEchart(
-        sevenElement.value as HTMLElement,
-        theme,
-        sevenData
-    )
+    if (wordElement.value)
+        wordEchart = initBookEchart(wordElement.value, theme, bookData)
 
-    durationEchart = initDurationEchart(
-        durationElement.value as HTMLElement,
-        theme,
-        sevenData
-    )
+    if (sevenElement.value)
+        sevenEchart = initSevenEchart(sevenElement.value, theme, sevenData)
+
+    if (durationElement.value)
+        durationEchart = initDurationEchart(
+            durationElement.value,
+            theme,
+            sevenData
+        )
 }
 
 function disposeEcharts() {

@@ -57,6 +57,13 @@ const routes = [
         meta: { title: "个人信息设置", requiresAuth: true },
     },
     {
+        name: "SettingLearn",
+        path: "/setting/learn",
+        component: () => import("@/pages/Setting/Learn.vue"),
+        // 只有经过身份验证的用户才能查看
+        meta: { title: "学习设置", requiresAuth: true },
+    },
+    {
         name: "NotFound",
         path: "/:pathMatch(.*)*",
         component: () => import("@/pages/NotFound.vue"),

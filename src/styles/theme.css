@@ -20,6 +20,8 @@
 
     --text-third-color: #555;
     --background-third-color: #bbb;
+
+    --text-prompt-color: #999;
 }
 
 :root.dark {
@@ -44,4 +46,6 @@
 
     --text-third-color: #bbb;
     --background-third-color: #555;
+
+    --text-prompt-color: #999;
 }

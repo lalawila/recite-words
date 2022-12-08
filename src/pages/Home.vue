@@ -1,7 +1,9 @@
 <template>
     <Container :width="600" class="container">
         <div>
-            <Text :size="60" bold class="days" inline>{{ days }}</Text>
+            <Text :size="60" bold class="days" inline>{{
+                todayData.clock_in_amount
+            }}</Text>
             <span>天</span>
         </div>
         <div class="book">
@@ -13,11 +15,11 @@
                     >
                 </RouterLink>
             </div>
-            <div class="setting">
+            <RouterLink class="setting" :to="{ name: 'SettingLearn' }">
                 <ElIcon><Notebook /></ElIcon>
                 <span>学习设置</span>
                 <ElIcon><ArrowRightBold /></ElIcon>
-            </div>
+            </RouterLink>
             <div class="progress row-between">
                 <span>已完成 78.2%</span>
                 <span>6114/7818词</span>
@@ -27,21 +29,21 @@
             <div class="row-around text-center">
                 <div>
                     <Text :size="12" color="var(--text-second-color)"
-                        >陌生 词</Text
+                        >应学</Text
                     >
-                    <Text :size="18" bold>10</Text>
+                    <Text :size="18" bold>{{ learnSetting.daily_amount }}</Text>
                 </div>
                 <div>
                     <Text :size="12" color="var(--text-second-color)"
-                        >复习中</Text
+                        >已学</Text
                     >
-                    <Text :size="18" bold>10</Text>
+                    <Text :size="18" bold>{{ todayData.learned_amount }}</Text>
                 </div>
                 <div>
                     <Text :size="12" color="var(--text-second-color)"
-                        >已掌握</Text
+                        >未学</Text
                     >
-                    <Text :size="18" bold>10</Text>
+                    <Text :size="18" bold>{{ todayData.unlearn_amount }}</Text>
                 </div>
             </div>
         </div>
@@ -56,10 +58,16 @@
     </Container>
 </template>
 <script setup lang="ts">
+import { getStatisticsToday } from "@/api/statistics"
+import { getLearnSetting } from "@/api/user"
 import { Notebook, ArrowRightBold } from "@element-plus/icons-vue"
 
+const [todayData, learnSetting] = await Promise.all([
+    getStatisticsToday(),
+    getLearnSetting(),
+])
+
 const router = useRouter()
-const days = ref(0)
 </script>
 <style scoped>
 .container {
@@ -67,6 +75,10 @@ const days = ref(0)
     flex-direction: column;
 
     gap: 40px;
+}
+
+a {
+    text-decoration: inherit;
 }
 
 .days {
@@ -91,6 +103,8 @@ const days = ref(0)
     align-items: center;
 
     gap: 5px;
+
+    color: var(--text-third-color);
 }
 
 .progress {
@@ -100,9 +114,6 @@ const days = ref(0)
     font-weight: bold;
 }
 
-a {
-    text-decoration: inherit;
-}
 .button {
     display: block;
 

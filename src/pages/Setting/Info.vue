@@ -9,16 +9,23 @@
         <Text
             v-if="userStore.registerTime"
             :size="14"
-            color="var(--text-third-color)"
+            color="var(--text-prompt-color)"
             >注册于：{{ timeTool?.formatTime(userStore.registerTime) }}</Text
         >
-        <ElInput v-model="username" placeholder="请输入用户名~"></ElInput>
-        <ElInput
-            v-model="bio"
-            type="textarea"
-            :rows="4"
-            placeholder="请输入个性签名~"
-        ></ElInput>
+        <ElInput v-model="username" placeholder="请输入用户名~">
+            <template #prepend>用户名</template></ElInput
+        >
+        <div class="bio">
+            <Text :size="12" color="var(--text-prompt-color)" :bottom="10"
+                >个性签名</Text
+            >
+            <ElInput
+                v-model="bio"
+                type="textarea"
+                :rows="4"
+                placeholder="请输入个性签名~"
+            ></ElInput>
+        </div>
         <ElButton type="primary" @click="updateInfo">更新信息</ElButton>
         <div>
             <ElButton text bg @click="updatePasswordVisible = true"
@@ -217,5 +224,9 @@ async function updatePassword() {
 }
 .box:hover .camera {
     opacity: 1;
+}
+
+.bio {
+    width: 100%;
 }
 </style>

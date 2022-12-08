@@ -27,3 +27,13 @@ interface ParamUpdateSelfInfo {
 interface ApiUpdateSelfInfo {
     token: string
 }
+
+interface ParamUpdateLearnSetting {
+    dailyAmount?: number
+    defaultPhonetic?: string
+}
+
+interface ApiLearnSetting {
+    daily_amount: number
+    default_phonetic: string
+}

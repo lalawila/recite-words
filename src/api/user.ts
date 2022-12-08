@@ -24,8 +24,6 @@ export async function login(
 }
 
 export async function fetchSelfInfo(): Promise<ApiSelfInfo> {
-    const tokenStore = useTokenStore()
-
     const response = await http.get("/user/info")
     return response.data
 }
@@ -54,5 +52,23 @@ export async function updateSelfInfo({
 
     const response = await http.put("/user/info", data)
 
+    return response.data
+}
+
+export async function getLearnSetting(): Promise<ApiLearnSetting> {
+    const response = await http.get("/user/learn")
+    return response.data
+}
+
+export async function updateLearnSetting({
+    dailyAmount,
+    defaultPhonetic,
+}: ParamUpdateLearnSetting): Promise<ApiLearnSetting> {
+    const data = {} as any
+
+    if (dailyAmount) data.daily_amount = dailyAmount
+    if (defaultPhonetic) data.default_phonetic = defaultPhonetic
+
+    const response = await http.put("/user/learn", data)
     return response.data
 }
