@@ -2,8 +2,12 @@
     <header class="navigation row-between">
         <div class="only-pc row-start">
             <img class="logo" src="/logo.png" />
-            <RouterLink class="btn" :to="{ name: 'Home' }">背单词</RouterLink>
-            <RouterLink class="btn" :to="{ name: 'Words' }">词表</RouterLink>
+            <RouterLink class="btn" :to="{ name: 'Home' }">{{
+                $t("背单词")
+            }}</RouterLink>
+            <RouterLink class="btn" :to="{ name: 'Words' }">{{
+                $t("词表")
+            }}</RouterLink>
             <RouterLink class="btn" :to="{ name: 'Statistics' }"
                 >学习数据</RouterLink
             >
@@ -15,7 +19,20 @@
                 :active-icon="Moon"
                 :inactive-icon="Sunny"
             />
-            <Trans class="translate" @click="langStore.locale = 'en'" />
+
+            <ElDropdown size="large">
+                <TransIcon class="translate" @click="langStore.locale = 'en'" />
+
+                <template #dropdown>
+                    <ElDropdownItem
+                        v-for="locale of langStore.availableLocales"
+                        @click="langStore.locale = locale"
+                        class="lang"
+                    >
+                        {{ $t(locale) }}
+                    </ElDropdownItem>
+                </template>
+            </ElDropdown>
         </div>
         <Hamburger class="only-phone">
             <img class="logo" src="/logo.png" />
@@ -32,6 +49,19 @@
                 :active-icon="Moon"
                 :inactive-icon="Sunny"
             />
+            <ElDropdown size="large">
+                <TransIcon class="translate" @click="langStore.locale = 'en'" />
+
+                <template #dropdown>
+                    <ElDropdownItem
+                        v-for="locale of langStore.availableLocales"
+                        @click="langStore.locale = locale"
+                        class="lang"
+                    >
+                        {{ $t(locale) }}
+                    </ElDropdownItem>
+                </template>
+            </ElDropdown>
         </Hamburger>
         <div>
             <template v-if="tokenStore.isLogined">
@@ -83,7 +113,7 @@ import { useLangStore } from "@/stores/lang"
 
 import { Sunny, Moon } from "@element-plus/icons-vue"
 
-import Trans from "@/assets/icons/trans.svg?component"
+import TransIcon from "@/assets/icons/trans.svg?component"
 
 const tokenStore = useTokenStore()
 const userStore = useUserStore()
@@ -128,6 +158,7 @@ a {
 }
 
 .translate {
+    margin: 10px 20px;
     width: 25px;
     fill: var(--text-third-color);
 }

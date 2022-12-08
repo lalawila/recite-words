@@ -4,7 +4,7 @@
             <Text :size="60" bold class="days" inline>{{
                 todayData.clock_in_amount
             }}</Text>
-            <span>天</span>
+            <span>{{ $t("天") }}</span>
         </div>
         <div class="book">
             <div class="row-between">
