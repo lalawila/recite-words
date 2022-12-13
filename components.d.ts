@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
     Detail: typeof import('./src/components/Detail.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
+    ElBacktop: typeof import('element-plus/es')['ElBacktop']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
@@ -25,10 +26,12 @@ declare module '@vue/runtime-core' {
     ElSlider: typeof import('element-plus/es')['ElSlider']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     Hamburger: typeof import('./src/components/Hamburger.vue')['default']
+    Learn: typeof import('./src/components/Learn.vue')['default']
     Navigation: typeof import('./src/components/Navigation.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Text: typeof import('./src/components/Text.vue')['default']
+    Welcome: typeof import('./src/components/Welcome.vue')['default']
     WordDetail: typeof import('./src/components/WordDetail.vue')['default']
   }
 }

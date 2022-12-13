@@ -22,7 +22,7 @@ export const useTokenStore = defineStore(
 
             const route = useRoute()
             const router = useRouter()
-            if (route.meta.requiresAuth) {
+            if (route?.meta.requiresAuth) {
                 router.push({
                     name: "Login",
                     // 保存我们所在的位置，以便以后再来

@@ -10,7 +10,6 @@ const routes = [
         name: "Home", // 页面名
         path: "/", // 映射的路径
         component: Home, // 虽配置名为 component 组件，但我更愿意理解为 page 页面
-        meta: { title: "首页" },
     },
     {
         name: "Statistics",
@@ -103,7 +102,9 @@ router.beforeEach((to, from) => {
     }
 
     if (to.meta.title) {
-        document.title = `${to.meta.title} - 背单词`
+        document.title = `${to.meta.title} - 鸭鸭背单词`
+    } else {
+        document.title = `鸭鸭背单词`
     }
 })
 

@@ -13,14 +13,14 @@ import {
     getStatisticsToday,
 } from "@/api/statistics"
 import * as echarts from "echarts/core"
-import darkTheme from "@/assets/echart/darkTheme"
+import darkTheme from "@/assets/echart/darkTheme.json"
 import type { Ref } from "vue"
 import { Theme, useThemeStore } from "@/stores/theme"
 
-import initTodayEchart from "@/common/echarts/today"
-import initBookEchart from "@/common/echarts/word"
-import initSevenEchart from "@/common/echarts/seven"
-import initDurationEchart from "@/common/echarts/duration"
+import initTodayEchart from "@/echarts/today"
+import initBookEchart from "@/echarts/word"
+import initSevenEchart from "@/echarts/seven"
+import initDurationEchart from "@/echarts/duration"
 
 import type { EChartsType } from "echarts/core"
 

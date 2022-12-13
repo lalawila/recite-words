@@ -37,8 +37,8 @@ export default function (
             trigger: "item",
         },
         legend: {
-            top: "5%",
-            left: "center",
+            bottom: 0,
+            right: 0,
         },
         series: [
             {

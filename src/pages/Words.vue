@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h1>单词列表</h1>
+        <h1>四级单词</h1>
         <RouterLink
             :to="{ name: 'WordDetail', params: { id: word.id } }"
             class="word-item"
@@ -8,25 +8,30 @@
         >
             <div class="row-between">
                 <div>
-                    <Text :size="20" class="right-10" bold inline>{{
+                    <Text :size="20" :right="20" bold inline>{{
                         word.word
                     }}</Text>
-                    <Text :size="14" color="#999" inline
+                    <Text :size="14" color="var(--text-prompt-color)" inline
                         >/{{ word.us_phonetic }}/</Text
                     >
                 </div>
-                <button @click.prevent="playAudio(word.us_phonetic_audio)">
-                    play
-                </button>
+
+                <ElIcon color="var(--primary-color)"
+                    ><VideoPlay
+                        @click.prevent="playAudio(word.us_phonetic_audio)"
+                /></ElIcon>
             </div>
             <!-- 仅显示第一个解释 -->
             <p>{{ word.explains[0].pos }} {{ word.explains[0].trans }}</p>
         </RouterLink>
         <p v-if="isFinished">已经没有更多了~</p>
+        <ElBacktop />
     </div>
 </template>
 <script setup lang="ts">
 import type { Ref } from "vue"
+import { VideoPlay } from "@element-plus/icons-vue"
+
 import { getWords } from "@/api/word"
 import { useDistanceFromBottom, isScroll } from "@/composables/scroll"
 import { debounce } from "@/common/debounce"
@@ -89,11 +94,11 @@ watch(distance, (value) => {
 }
 
 .word-item:not(:last-child) {
-    border-bottom: 1px solid #666;
+    border-bottom: 1px solid var(--background-second-color);
 }
 
 .phonetic {
     font-size: 14px;
-    color: #999;
+    color: var(--prompt-color);
 }
 </style>

@@ -24,7 +24,7 @@ type EChartsOption = echarts.ComposeOption<
 export default function (
     element: HTMLElement,
     theme: string,
-    data: ApiStatisticsWord
+    data: ApiStatisticsBook
 ) {
     // 创建单词书掌握情况
     // 基于准备好的dom，初始化echarts实例
@@ -37,8 +37,8 @@ export default function (
             trigger: "item",
         },
         legend: {
-            top: "5%",
-            left: "center",
+            bottom: 0,
+            right: 0,
         },
         series: [
             {

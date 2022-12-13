@@ -51,12 +51,10 @@ export default function (
             trigger: "axis",
         },
         legend: {
-            data: ["总数", "简单", "记住", "忘记"],
+            bottom: 0,
+            right: 0,
         },
         grid: {
-            left: "3%",
-            right: "4%",
-            bottom: "3%",
             containLabel: true,
         },
         xAxis: {
