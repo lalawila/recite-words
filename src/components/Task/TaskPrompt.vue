@@ -116,12 +116,20 @@ defineEmits(["remember", "forget"])
 }
 
 .bottom {
-    width: 100%;
+    display: flex;
 }
-.button {
-    display: block;
-    width: 100%;
 
-    margin: 20px 0;
+.button {
+    flex: 1;
+}
+
+/* 手机适配 */
+@media not screen and (min-width: 768px) {
+    .bottom {
+        flex-direction: column;
+    }
+    .button {
+        margin: 10px 0;
+    }
 }
 </style>

@@ -128,7 +128,17 @@ const router = useRouter()
     max-width: 800px;
     margin: 0 auto;
 
-    padding: 20px;
+    height: 60px;
+    padding: 0 20px;
+
+    position: sticky;
+    top: 0;
+
+    background-color: var(--background-color);
+
+    transition: background-color 1s;
+
+    z-index: 999;
 }
 a {
     color: inherit;
@@ -137,7 +147,7 @@ a {
 
 .logo {
     width: 36px;
-    margin-right: 20px;
+    margin: 0 20px;
 }
 
 .btn {

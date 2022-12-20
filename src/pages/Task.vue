@@ -1,5 +1,5 @@
 <template>
-    <Container class="container" :width="480">
+    <Container class="container" :width="680">
         <TaskWord
             v-if="stage === Stage.word"
             :today="today"
@@ -90,6 +90,6 @@ async function next() {
 
     height: calc(100vh - 80px);
 
-    max-height: 600px;
+    max-height: 800px;
 }
 </style>
