@@ -17,6 +17,7 @@ interface StatisticsSeven {
 }
 
 interface ApiStatisticsToday {
+    daily_amount: number // 设定的每日学习单词数量
     learned_amount: number // 已学习
     unlearn_amount: number // 未学习
     simple_amount: number // 太简单

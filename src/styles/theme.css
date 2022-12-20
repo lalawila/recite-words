@@ -11,6 +11,12 @@
 
     --el-color-primary-dark-2: hsl(161, 43%, 45%);
 
+    --el-color-warning: hsl(22, 83%, 65%);
+    --el-color-warning-light-3: hsl(22, 83%, 75%);
+    --el-color-warning-light-5: hsl(22, 83%, 85%);
+
+    --el-color-warning-dark-2: hsl(22, 83%, 55%);
+
     /* 自定义的主题色 */
     --text-color: #111;
     --background-color: #fff;
@@ -36,6 +42,12 @@
     --el-color-primary-light-5: hsl(161, 43%, 75%);
 
     --el-color-primary-dark-2: hsl(161, 43%, 45%);
+
+    --el-color-warning: hsl(22, 83%, 65%);
+    --el-color-warning-light-3: hsl(22, 83%, 75%);
+    --el-color-warning-light-5: hsl(22, 83%, 85%);
+
+    --el-color-warning-dark-2: hsl(22, 83%, 55%);
 
     /* 自定义的主题色 */
     --text-color: #fff;

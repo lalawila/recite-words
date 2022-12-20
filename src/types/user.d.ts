@@ -34,6 +34,6 @@ interface ParamUpdateLearnSetting {
 }
 
 interface ApiLearnSetting {
-    daily_amount: number
+    daily_amount: number // 每日学习单词数量
     default_phonetic: string
 }

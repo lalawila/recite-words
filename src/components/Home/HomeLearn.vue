@@ -44,22 +44,33 @@
 
             <div class="row-around text-center">
                 <div>
-                    <Text :size="12" color="var(--text-second-color)"
+                    <Text
+                        :size="12"
+                        :bottom="4"
+                        color="var(--text-second-color)"
                         >应学</Text
                     >
-                    <Text :size="18" bold>{{ learnSetting.daily_amount }}</Text>
+                    <Text bold>{{ todayData.daily_amount }}</Text>
                 </div>
                 <div>
-                    <Text :size="12" color="var(--text-second-color)"
+                    <Text
+                        :size="12"
+                        :bottom="4"
+                        color="var(--text-second-color)"
                         >已学</Text
                     >
-                    <Text :size="18" bold>{{ todayData.learned_amount }}</Text>
+                    <Text bold>{{ todayData.learned_amount }}</Text>
                 </div>
                 <div>
-                    <Text :size="12" color="var(--text-second-color)"
-                        >未学</Text
+                    <Text
+                        :size="12"
+                        :bottom="4"
+                        color="var(--text-second-color)"
+                        >时长</Text
                     >
-                    <Text :size="18" bold>{{ todayData.unlearn_amount }}</Text>
+                    <Text bold>{{
+                        `${Math.floor(todayData.learn_duration / 60)}min`
+                    }}</Text>
                 </div>
             </div>
         </div>
@@ -75,13 +86,11 @@
 </template>
 <script setup lang="ts">
 import { getStatisticsBook, getStatisticsToday } from "@/api/statistics"
-import { getLearnSetting } from "@/api/user"
 import { Notebook, ArrowRightBold } from "@element-plus/icons-vue"
 
-const [todayData, bookData, learnSetting] = await Promise.all([
+const [todayData, bookData] = await Promise.all([
     getStatisticsToday(),
     getStatisticsBook(),
-    getLearnSetting(),
 ])
 
 const router = useRouter()

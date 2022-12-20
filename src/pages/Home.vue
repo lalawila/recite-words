@@ -1,7 +1,7 @@
 <template>
     <Container :width="600" class="container">
-        <Learn v-if="tokenStore.isLogined"> </Learn>
-        <Welcome v-else="tokenStore.isLogined"> </Welcome>
+        <HomeLearn v-if="tokenStore.isLogined"> </HomeLearn>
+        <HomeWelcome v-else="tokenStore.isLogined"> </HomeWelcome>
     </Container>
 </template>
 <script setup lang="ts">
