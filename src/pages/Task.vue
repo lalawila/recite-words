@@ -88,7 +88,8 @@ async function next() {
 
     justify-content: space-between;
 
-    height: calc(100vh - 80px);
+    /* 减去导航栏的高度，使其加上导航栏刚好一屏的高度 */
+    height: calc(100vh - 60px);
 
     max-height: 800px;
 }

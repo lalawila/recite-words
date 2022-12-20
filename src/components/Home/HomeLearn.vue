@@ -42,37 +42,7 @@
                 :show-text="false"
             />
 
-            <div class="row-around text-center">
-                <div>
-                    <Text
-                        :size="12"
-                        :bottom="4"
-                        color="var(--text-second-color)"
-                        >应学</Text
-                    >
-                    <Text bold>{{ todayData.daily_amount }}</Text>
-                </div>
-                <div>
-                    <Text
-                        :size="12"
-                        :bottom="4"
-                        color="var(--text-second-color)"
-                        >已学</Text
-                    >
-                    <Text bold>{{ todayData.learned_amount }}</Text>
-                </div>
-                <div>
-                    <Text
-                        :size="12"
-                        :bottom="4"
-                        color="var(--text-second-color)"
-                        >时长</Text
-                    >
-                    <Text bold>{{
-                        `${Math.floor(todayData.learn_duration / 60)}min`
-                    }}</Text>
-                </div>
-            </div>
+            <TodayProgress :today="todayData" />
         </div>
         <ElButton
             class="button"

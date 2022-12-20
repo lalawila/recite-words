@@ -1,35 +1,9 @@
 <template>
     <div>
-        <div class="row-around text-center">
-            <div>
-                <Text :size="12" :bottom="4" color="var(--text-second-color)"
-                    >应学</Text
-                >
-                <Text bold>{{ today.daily_amount }}</Text>
-            </div>
-            <div>
-                <Text :size="12" :bottom="4" color="var(--text-second-color)"
-                    >已学</Text
-                >
-                <Text bold>{{ today.learned_amount }}</Text>
-            </div>
-            <div>
-                <Text :size="12" :bottom="4" color="var(--text-second-color)"
-                    >时长</Text
-                >
-                <Text bold>{{
-                    `${Math.floor(today.learn_duration / 60)}min`
-                }}</Text>
-            </div>
-        </div>
-        <ElProgress
-            class="progress"
-            :percentage="
-                Math.min(today.learned_amount / today.daily_amount, 1) * 100
-            "
-            :show-text="false"
-        />
-        <Text center :size="36" :bottom="20" bold>{{ task.word }}</Text>
+        <TodayProgress :today="today" with-progress />
+        <Text center :size="36" :top="60" :bottom="20" bold>{{
+            task.word
+        }}</Text>
         <div class="row-center">
             <VideoPlay
                 class="icon"
@@ -67,11 +41,6 @@ defineProps(["today", "task"])
 defineEmits(["remember", "prompt"])
 </script>
 <style scoped>
-.progress {
-    margin-top: 20px;
-    margin-bottom: 60px;
-}
-
 .icon {
     width: 20px;
     height: 20px;

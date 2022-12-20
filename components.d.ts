@@ -32,5 +32,7 @@ declare module '@vue/runtime-core' {
     TaskPrompt: typeof import('./src/components/Task/TaskPrompt.vue')['default']
     TaskWord: typeof import('./src/components/Task/TaskWord.vue')['default']
     Text: typeof import('./src/components/Text.vue')['default']
+    TodayProgress: typeof import('./src/components/TodayProgress.vue')['default']
+    TodayProsees: typeof import('./src/components/TodayProsees.vue')['default']
   }
 }
