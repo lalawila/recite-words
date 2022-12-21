@@ -6,6 +6,7 @@ export function useDistanceFromBottom() {
 
     // 组合式函数可以随时更改其状态。
     function update() {
+        console.log("scroll")
         // 滚动距离页面底部的距离
         // HTML 元素内容的整体高度 - （HTML 元素顶部滚动出的高度 + ）
         // 参考 https://3yya.com/courseware/chapter/211

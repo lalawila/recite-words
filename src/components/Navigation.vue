@@ -151,7 +151,7 @@ const router = useRouter()
 
     background-color: var(--background-color);
 
-    transition: background-color 1s;
+    transition: background-color 1s, box-shadow 1s;
 
     z-index: 999;
     box-shadow: 0 0 4px var(--background-third-color);
