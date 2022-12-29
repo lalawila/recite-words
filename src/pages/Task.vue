@@ -41,6 +41,7 @@ enum Stage {
 
 const stage = ref(Stage.word)
 
+
 const [today, task] = await Promise.all([
     ref(await getStatisticsToday()),
     ref(await getTask()),

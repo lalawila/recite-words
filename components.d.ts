@@ -8,7 +8,6 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Container: typeof import('./src/components/Container.vue')['default']
-    copy: typeof import('./src/components/Task/TaskWord copy.vue')['default']
     Detail: typeof import('./src/components/Detail.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
@@ -34,6 +33,5 @@ declare module '@vue/runtime-core' {
     TaskWord: typeof import('./src/components/Task/TaskWord.vue')['default']
     Text: typeof import('./src/components/Text.vue')['default']
     TodayProgress: typeof import('./src/components/TodayProgress.vue')['default']
-    TodayProsees: typeof import('./src/components/TodayProsees.vue')['default']
   }
 }
