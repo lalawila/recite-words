@@ -7,7 +7,7 @@
                 @click="playAudio(wordDetail.us_phonetic_audio)"
             ></VideoPlay>
         </div>
-        <Text color="#999" :vertical="10">/{{ wordDetail.word }}/</Text>
+        <Text color="#999" :vertical="10">/{{ wordDetail.us_phonetic }}/</Text>
         <div class="explain" v-for="explain of wordDetail.explains">
             <Text :right="10" color="#999" inline>{{ explain.pos }}</Text>
             <Text inline>{{ explain.trans }}</Text>
