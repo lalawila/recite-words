@@ -47,6 +47,7 @@ const [today, task] = await Promise.all([
     ref(await getTask()),
 ])
 
+
 // 自动播放
 // 用户不点击，无法自动播放
 playAudio(task.value.phonetic_audio).catch(() => {})
