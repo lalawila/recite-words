@@ -5,4 +5,5 @@
 </template>
 <script setup lang="ts">
 const route = useRoute()
+console.log(123)
 </script>
