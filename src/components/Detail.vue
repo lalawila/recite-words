@@ -1,23 +1,33 @@
 <template>
     <div class="detail">
+        <Text :size="36" bold>{{ wordDetail.word }}</Text>
         <div class="row-between">
-            <Text :size="36" bold>{{ wordDetail.word }}</Text>
-            <VideoPlay
-                class="icon"
-                @click="playAudio(wordDetail.us_phonetic_audio)"
-            ></VideoPlay>
+
+            <Text class="row-around" :top="10" :bottom="10">
+                <div class="row" @click.prevent="playAudio(wordDetail.uk_phonetic_audio)">
+                    <Text :size="14">英</Text>
+                    <Text :size="14" color="var(--text-prompt-color)">/{{ wordDetail.uk_phonetic }}/</Text>
+                    <el-icon color="var(--primary-color)">
+                        <VideoPlay class="icon" />
+                    </el-icon>
+                </div>
+
+                <div class="row" @click.prevent="playAudio(wordDetail.us_phonetic_audio)">
+                    <Text :size="14">美</Text>
+                    <Text :size="14" color="var(--text-prompt-color)">/{{ wordDetail.us_phonetic }}/</Text>
+                    <el-icon color="var(--primary-color)">
+                        <VideoPlay class="icon" />
+                    </el-icon>
+                </div>
+            </Text>
         </div>
-        <Text color="#999" :vertical="10">/{{ wordDetail.us_phonetic }}/</Text>
         <div class="explain" v-for="explain of wordDetail.explains">
             <Text :right="10" color="#999" inline>{{ explain.pos }}</Text>
             <Text inline>{{ explain.trans }}</Text>
         </div>
         <div class="row-between">
             <Text :vertical="20">例句</Text>
-            <VideoPlay
-                class="icon"
-                @click="playAudio(wordDetail.example_audio)"
-            ></VideoPlay>
+            <VideoPlay class="icon" @click="playAudio(wordDetail.example_audio)"></VideoPlay>
         </div>
         <Text :vertical="10">{{ wordDetail.example_en }}</Text>
         <Text :vertical="10">{{ wordDetail.example_zh }}</Text>
@@ -41,6 +51,7 @@ const wordDetail = await getWordDetail(props.wordId)
 .detail {
     width: 100%;
 }
+
 .explain {
     margin: 10px 0;
 }
@@ -52,5 +63,16 @@ const wordDetail = await getWordDetail(props.wordId)
     cursor: pointer;
 
     color: var(--primary-color);
+}
+
+.row {
+    gap: 8px;
+    background-color: var(--background-second-color);
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+.row-around {
+    gap: 10px;
 }
 </style>

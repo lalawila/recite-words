@@ -2,7 +2,8 @@
 .row-between,
 .row-around,
 .row-start,
-.row-center {
+.row-center,
+.row {
     display: flex;
     align-items: center;
 }
@@ -38,6 +39,7 @@
 .bottom-10 {
     margin-bottom: 10px;
 }
+
 .bottom-20 {
     margin-bottom: 20px;
 }
